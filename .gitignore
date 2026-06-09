@@ -1,0 +1,48 @@
+# ── Secrets & environment ─────────────────────────────────────────
+.env
+*.env
+!.env.example
+**/secrets/**
+*.secret
+*.key
+*.pem
+
+# ── UiPath ────────────────────────────────────────────────────────
+.local/
+.settings/
+.objects/
+**/.tmh/
+**/obj/
+**/bin/
+*.nupkg
+
+# ── Python extraction/audit services ──────────────────────────────
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# ── Runtime data (synthetic, but keep the repo clean) ─────────────
+data/processed/*
+data/failed/*
+data/review/*
+data/extracted-json/*
+!data/**/.gitkeep
+reports/*.xlsx
+*.sqlite
+*.db
+audit*.db
+
+# ── OS / IDE ──────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+# Office lock/temp files (e.g. ~$Build-Progress-Log.docx)
+~$*
+
+# NOTE: data/input-referrals and data/synthetic-patients ARE committed
+#       because they are synthetic test fixtures, not runtime output.
