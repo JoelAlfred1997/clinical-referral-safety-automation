@@ -44,5 +44,8 @@ Thumbs.db
 # Office lock/temp files (e.g. ~$Build-Progress-Log.docx)
 ~$*
 
+# ── Claude Code local settings ────────────────────────────────────
+.claude/settings.local.json
+
 # NOTE: data/input-referrals and data/synthetic-patients ARE committed
 #       because they are synthetic test fixtures, not runtime output.
