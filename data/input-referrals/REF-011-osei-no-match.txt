@@ -1,0 +1,33 @@
+*** SYNTHETIC TEST DATA — NOT A REAL PATIENT — PORTFOLIO SIMULATION ***
+
+NHS GP REFERRAL LETTER
+
+Date of referral: 28/05/2026
+Referring GP:     Dr Nadia Rahman (GMC 7127754)
+Practice:         Ardwick Green Surgery, Manchester
+Practice tel:     0161 496 0034
+To:               Orthopaedics Department, Manchester Royal Infirmary
+
+PATIENT DETAILS
+Name:        Ibrahim Osei
+NHS Number:  999 000 0379
+Date of birth: 08/04/1990
+Gender:      Male
+Address:     5 Ardwick Green North, Manchester, M1 1AE
+Telephone:   07700 900034
+
+REFERRAL
+Speciality:  Orthopaedics
+Priority:    Routine
+
+Reason for referral:
+36-year-old man with a 6-month history of right knee pain following a sporting
+injury, not settling with physiotherapy. Mechanical symptoms with intermittent
+locking. Grateful for orthopaedic assessment and consideration of MRI.
+
+Current medication: Ibuprofen PRN.
+Allergies: None known.
+
+Yours sincerely,
+Dr Nadia Rahman
+Ardwick Green Surgery

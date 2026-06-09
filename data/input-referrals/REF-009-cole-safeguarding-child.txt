@@ -1,0 +1,34 @@
+*** SYNTHETIC TEST DATA — NOT A REAL PATIENT — PORTFOLIO SIMULATION ***
+
+NHS GP REFERRAL LETTER
+
+Date of referral: 27/05/2026
+Referring GP:     Dr Rachel Nolan (GMC 7105532)
+Practice:         Eastmoor Health Centre, Wakefield
+Practice tel:     01924 496 031
+To:               Community Paediatrics, Pinderfields Hospital
+
+PATIENT DETAILS
+Name:        Florence Cole
+NHS Number:  999 000 0344
+Date of birth: 14/02/2018
+Gender:      Female
+Address:     12 Eastmoor Road, Wakefield, WF1 4AL
+Telephone (parent/carer): 07700 900031
+
+REFERRAL
+Speciality:  Paediatrics
+Priority:    Urgent
+
+Reason for referral:
+8-year-old girl with faltering growth and recurrent unexplained injuries. There
+is an active safeguarding alert on this child. Multiple missed appointments noted.
+Health visitor and school nurse involved. Grateful for urgent paediatric
+assessment; safeguarding lead has been informed.
+
+Current medication: None.
+Allergies: None known.
+
+Yours sincerely,
+Dr Rachel Nolan
+Eastmoor Health Centre

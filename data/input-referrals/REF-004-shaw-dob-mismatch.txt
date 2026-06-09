@@ -1,0 +1,33 @@
+*** SYNTHETIC TEST DATA — NOT A REAL PATIENT — PORTFOLIO SIMULATION ***
+
+NHS GP REFERRAL LETTER
+
+Date of referral: 18/05/2026
+Referring GP:     Dr Andrew Booth (GMC 7055009)
+Practice:         Hartshill Medical Centre, Stoke-on-Trent
+Practice tel:     01782 496 026
+To:               Dermatology Department, Royal Stoke University Hospital
+
+PATIENT DETAILS
+Name:        Ruby Shaw
+NHS Number:  999 000 0271
+Date of birth: 14/09/1985
+Gender:      Female
+Address:     5 Hartshill Road, Stoke-on-Trent, ST4 2RW
+Telephone:   07700 900026
+
+REFERRAL
+Speciality:  Dermatology
+Priority:    Routine
+
+Reason for referral:
+40-year-old woman with a persistent eczematous rash on both forearms, present
+for 4 months and not settling with topical steroids. No systemic features.
+Grateful for dermatology assessment and patch testing.
+
+Current medication: Betnovate cream.
+Allergies: None known.
+
+Yours sincerely,
+Dr Andrew Booth
+Hartshill Medical Centre

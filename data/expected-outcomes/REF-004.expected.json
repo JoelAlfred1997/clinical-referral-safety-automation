@@ -1,0 +1,34 @@
+{
+  "referral_id": "REF-004",
+  "source_file": "REF-004-shaw-dob-mismatch.txt",
+  "scenario": "dob_mismatch",
+  "synthetic": true,
+  "patient_ref": {
+    "synthetic_id": "SYN-026",
+    "nhs_number": "9990000271",
+    "name": "Ruby Shaw",
+    "in_openmrs": true,
+    "openmrs_dob": "1985-09-04"
+  },
+  "expected_extraction": {
+    "patient_nhs_number": "9990000271",
+    "patient_first_name": "Ruby",
+    "patient_last_name": "Shaw",
+    "patient_dob": "1985-09-14",
+    "patient_gender": "F",
+    "referral_date": "2026-05-18",
+    "referring_clinician": "Dr Andrew Booth",
+    "referring_practice": "Hartshill Medical Centre",
+    "specialty": "Dermatology",
+    "priority": "Routine",
+    "reason_for_referral": "Persistent forearm eczema not responding to topical steroids; assessment and patch testing."
+  },
+  "expected_missing_fields": [],
+  "expected_confidence": "high",
+  "expected_match_result": "DOB_MISMATCH",
+  "expected_safety_flags": ["PATIENT_MATCH_RISK"],
+  "expected_reason_codes": ["MATCH_DOB_MISMATCH"],
+  "expected_bot_decision": "HUMAN_REVIEW_REQUIRED",
+  "expected_final_status": "ROUTED_TO_HUMAN_REVIEW",
+  "notes": "NHS number resolves to Ruby Shaw, but the referral DOB (1985-09-14) differs from the OpenMRS DOB (1985-09-04). Identifier vs demographic conflict = wrong-patient risk; never auto-create. Route to human review."
+}

@@ -1,0 +1,35 @@
+*** SYNTHETIC TEST DATA — NOT A REAL PATIENT — PORTFOLIO SIMULATION ***
+
+NHS GP REFERRAL LETTER
+
+Date of referral: 20/05/2026
+Referring GP:     Dr Sarah Mills (GMC 7012345)
+Practice:         The Grange Medical Practice, Leeds
+Practice tel:     0113 496 0001
+To:               Cardiology Department, Leeds General Infirmary
+
+PATIENT DETAILS
+Name:        Oliver Bennett
+NHS Number:  999 000 0018
+Date of birth: 12/04/1979
+Gender:      Male
+Address:     14 Brudenell Road, Leeds, LS6 2AF
+Telephone:   07700 900001
+
+REFERRAL
+Speciality:  Cardiology
+Priority:    Routine
+
+Reason for referral:
+58-year-old gentleman with longstanding hypertension, now reporting occasional
+exertional palpitations over the past 8 weeks. BP control adequate on amlodipine
+5mg. Resting ECG in surgery shows sinus rhythm, no acute changes. No chest pain,
+no syncope, no red-flag features. Grateful for routine cardiology review and
+consideration of ambulatory ECG monitoring.
+
+Current medication: Amlodipine 5mg OD.
+Allergies: None known.
+
+Yours sincerely,
+Dr Sarah Mills
+The Grange Medical Practice

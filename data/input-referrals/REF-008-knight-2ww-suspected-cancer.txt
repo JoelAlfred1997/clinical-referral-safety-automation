@@ -1,0 +1,34 @@
+*** SYNTHETIC TEST DATA — NOT A REAL PATIENT — PORTFOLIO SIMULATION ***
+
+NHS GP REFERRAL LETTER — URGENT SUSPECTED CANCER (2-WEEK WAIT)
+
+Date of referral: 26/05/2026
+Referring GP:     Dr Catherine Lowe (GMC 7094421)
+Practice:         St Vincent Medical Practice, Doncaster
+Practice tel:     01302 496 032
+To:               Lung Cancer 2WW Service, Doncaster Royal Infirmary
+
+PATIENT DETAILS
+Name:        Stanley Knight
+NHS Number:  999 000 0352
+Date of birth: 19/06/1949
+Gender:      Male
+Address:     3 St Vincent Avenue, Doncaster, DN1 2EE
+Telephone:   07700 900032
+
+REFERRAL
+Speciality:  Respiratory Medicine
+Priority:    URGENT — 2-WEEK WAIT — SUSPECTED LUNG CANCER
+
+Reason for referral:
+76-year-old ex-smoker (50 pack-years) with a 6-week history of haemoptysis,
+unintentional weight loss of 5kg, and a persistent cough. Chest X-ray reports a
+3cm spiculated mass in the right upper lobe — suspicious for malignancy. Urgent
+2-week-wait referral under the suspected lung cancer pathway. Please expedite.
+
+Current medication: Tiotropium inhaler.
+Allergies: None known.
+
+Yours sincerely,
+Dr Catherine Lowe
+St Vincent Medical Practice

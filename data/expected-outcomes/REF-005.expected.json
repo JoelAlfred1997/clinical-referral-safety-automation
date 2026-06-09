@@ -1,0 +1,34 @@
+{
+  "referral_id": "REF-005",
+  "source_file": "REF-005-hamilton-partial-match.txt",
+  "scenario": "partial_match",
+  "synthetic": true,
+  "patient_ref": {
+    "synthetic_id": "SYN-027",
+    "nhs_number": "9990000298",
+    "name": "Leo Hamilton",
+    "in_openmrs": true,
+    "openmrs_postcode": "AB10 6RN"
+  },
+  "expected_extraction": {
+    "patient_nhs_number": null,
+    "patient_first_name": "Leo",
+    "patient_last_name": "Hamilton",
+    "patient_dob": "1976-12-16",
+    "patient_gender": "M",
+    "referral_date": "2026-05-19",
+    "referring_clinician": "Dr Fiona Ross",
+    "referring_practice": "Carden Medical Practice",
+    "specialty": "Lipidology",
+    "priority": "Routine",
+    "reason_for_referral": "Raised cholesterol with statin intolerance and family history of premature IHD; lipid clinic advice."
+  },
+  "expected_missing_fields": ["patient_nhs_number"],
+  "expected_confidence": "medium",
+  "expected_match_result": "PARTIAL_MATCH",
+  "expected_safety_flags": ["PATIENT_MATCH_RISK"],
+  "expected_reason_codes": ["MATCH_PARTIAL"],
+  "expected_bot_decision": "HUMAN_REVIEW_REQUIRED",
+  "expected_final_status": "ROUTED_TO_HUMAN_REVIEW",
+  "notes": "No NHS number supplied. Name + DOB match a single OpenMRS candidate (Leo Hamilton, 9990000298), but the postcode on the letter (AB10 1UP) differs from OpenMRS (AB10 6RN) and the identifier is unconfirmed. Probable but unverified match = partial; route to human to confirm identity before any record is created."
+}

@@ -18,7 +18,7 @@ const {
 } = require("docx");
 
 const LAST_UPDATED = "9 June 2026";
-const STATUS = "Phases 0, 1, 2 complete  —  next: Phase 3 (Synthetic referral documents)";
+const STATUS = "Phases 0, 1, 2, 3 complete  —  next: Phase 4 (Extraction & Agentic AI service)";
 const OUT = path.join(__dirname, "..", "Build-Progress-Log.docx");
 const CONTENT_W = 9360; // US Letter, 1" margins
 
@@ -153,7 +153,7 @@ children.push(
   ], [1700, 3100, 4560]),
   h3("Repository"),
   p([mono("E:\\Learning\\UiPath\\UiPath Tutorial & Projects\\Projects\\nhs")]),
-  p([t("Key documents: ", { bold: true }), mono("README.md"), t("  ·  "), mono("docs/business/project-scope.md"), t("  ·  "), mono("docs/technical/architecture.md"), t("  ·  "), mono("docs/testing/phase1-acceptance.md"), t("  ·  "), mono("docs/testing/phase2-acceptance.md")]),
+  p([t("Key documents: ", { bold: true }), mono("README.md"), t("  ·  "), mono("docs/business/project-scope.md"), t("  ·  "), mono("docs/technical/architecture.md"), t("  ·  "), mono("docs/testing/phase1-acceptance.md"), t("  ·  "), mono("docs/testing/phase2-acceptance.md"), t("  ·  "), mono("docs/testing/phase3-acceptance.md")]),
 );
 
 // --- 2. Environment & how to run ---
@@ -288,6 +288,62 @@ children.push(...addPhase("2", "Synthetic Patient Data", [
   sub("Deferred (tracked)", [ p("The duplicate-target patient (Arthur Reed) needs a pre-existing Referral encounter to be detectable as a duplicate. That is seeded in Phase 6/8 once the Referral encounter type + concepts exist.") ]),
 ]));
 
+// --- Phase 3 ---
+children.push(...addPhase("3", "Synthetic Referral Documents & Expected Outcomes", [
+  sub("What was built", [
+    bullet("15 synthetic GP referral documents (REF-001…REF-015) in data/input-referrals/ — the 'incoming letters' the bot will process. 14 are realistic referral letters (.txt) with a 'SYNTHETIC TEST DATA' banner; REF-015 is a deliberately corrupt PDF."),
+    bullet("15 machine-readable expected-outcome files (data/expected-outcomes/REF-NNN.expected.json) — the test oracle that says, for each referral, what the correct extraction, patient-match result, safety flags, decision and final status should be."),
+    bullet("Every referral is wired to a real Phase-2 seeded patient (or a reserved no-match fixture), so the scenarios exercise the actual data already in OpenMRS."),
+    bullet("Expected-outcome files live OUTSIDE input-referrals/ on purpose, so the Phase 8 dispatcher never mistakes an oracle file for a referral to ingest."),
+  ]),
+  sub("Files created", [
+    table([
+      ["File", "Purpose"],
+      ["data/input-referrals/REF-001…015 (.txt/.pdf)", "The 15 synthetic referral documents"],
+      ["data/expected-outcomes/REF-001…015.expected.json", "Per-referral expected result (test oracle)"],
+      ["data/expected-outcomes/README.md", "Oracle schema + full scenario matrix + coverage"],
+      ["docs/testing/phase3-acceptance.md", "Acceptance evidence"],
+    ], [4900, 4460]),
+  ]),
+  sub("Scenario coverage (the 15 cases)", [
+    p("Spread across all four bot decisions and every safety routing reason:"),
+    table([
+      ["Ref", "Scenario", "Bot decision"],
+      ["001 / 002 / 003", "Clean exact match, complete, routine (Bennett / Davies / Clarke)", "AUTO_CREATE_REFERRAL_RECORD"],
+      ["004", "DOB mismatch (Ruby Shaw — NHS matches, DOB differs)", "HUMAN_REVIEW_REQUIRED"],
+      ["005", "Partial match (Leo Hamilton — no NHS number, demographic discrepancy)", "HUMAN_REVIEW_REQUIRED"],
+      ["006", "Multiple candidates (two 'Helen Walsh', same DOB)", "HUMAN_REVIEW_REQUIRED"],
+      ["007", "Duplicate referral (Arthur Reed — existing active Cardiology)", "HUMAN_REVIEW_REQUIRED"],
+      ["008", "Urgent 2-week-wait suspected cancer (Stanley Knight)", "HUMAN_REVIEW_REQUIRED"],
+      ["009", "Safeguarding / child (Florence Cole, DOB 2018)", "HUMAN_REVIEW_REQUIRED"],
+      ["010 / 011", "No match — not in OpenMRS (Maria Fernandes / Ibrahim Osei)", "HUMAN_REVIEW_REQUIRED"],
+      ["012", "Incomplete — missing speciality/priority/reason (Daniel Owen)", "HUMAN_REVIEW_REQUIRED"],
+      ["013", "Low extraction confidence — garbled scan/fax (Mia Roberts)", "HUMAN_REVIEW_REQUIRED"],
+      ["014", "Not a referral — appointment reminder (bad input)", "BUSINESS_EXCEPTION"],
+      ["015", "Corrupt / unreadable PDF (technical fault)", "SYSTEM_EXCEPTION"],
+    ], [1500, 6360, 1500]),
+  ]),
+  sub("Decision vocabulary established (feeds Phase 5)", [
+    bullet("match_result: EXACT_MATCH · DOB_MISMATCH · PARTIAL_MATCH · MULTIPLE_CANDIDATES · NO_MATCH · NOT_APPLICABLE"),
+    bullet("bot_decision: AUTO_CREATE_REFERRAL_RECORD · HUMAN_REVIEW_REQUIRED · BUSINESS_EXCEPTION · SYSTEM_EXCEPTION"),
+    bullet("final_status: REFERRAL_CREATED_IN_OPENMRS · ROUTED_TO_HUMAN_REVIEW · BUSINESS_EXCEPTION_FAILED · SYSTEM_EXCEPTION_ESCALATED"),
+    bullet("BE vs SE distinguished on one axis: REF-014 reads fine but is the wrong document type (business); REF-015 cannot be read at all (technical → retry then escalate)."),
+  ]),
+  sub("Results (all PASS)", [
+    bullet("15 referral inputs present; 15 expected-outcome JSON files, all validated (json.load over all 15 → 0 invalid)."),
+    bullet("All match scenarios and all four bot decisions covered (AUTO_CREATE ×3, HUMAN_REVIEW ×10, BUSINESS_EXCEPTION ×1, SYSTEM_EXCEPTION ×1)."),
+    bullet("Synthetic-by-construction throughout: 999-range NHS numbers, Ofcom 07700 900xxx phones, synthetic banner on every letter."),
+  ]),
+  sub("Screenshots to capture", [
+    bullet("data/input-referrals/ folder showing the 15 referral files."),
+    bullet("A clean referral (REF-001) and a tricky one (REF-006 Walsh / REF-008 2WW) opened side by side."),
+    bullet("An expected-outcome JSON (e.g. REF-004.expected.json) showing the DOB-mismatch oracle."),
+    bullet("data/expected-outcomes/README.md scenario matrix table."),
+  ]),
+  sub("What to commit", [ p("data/input-referrals/REF-* (synthetic fixtures), data/expected-outcomes/ (oracles + README), docs/testing/phase3-acceptance.md, README + this build log.") ]),
+  sub("Deferred (tracked)", [ p("REF-007 duplicate needs the pre-existing Cardiology Referral encounter for Arthur Reed (seeded Phase 6/8). A few .txt referrals may optionally be re-rendered as real .pdf in Phase 4 to exercise the PDF→text path on valid PDFs.") ]),
+]));
+
 // --- Appendix A: UUIDs ---
 children.push(
   pageBreak(), h1("Appendix A — Key OpenMRS UUIDs"),
@@ -321,8 +377,8 @@ const roadmap = [
   ["0", "Scope & architecture", "✅ Done"],
   ["1", "OpenMRS local setup", "✅ Done"],
   ["2", "Synthetic patient data", "✅ Done"],
-  ["3", "Synthetic referral documents (15 cases + expected outcomes)", "⬜ Next"],
-  ["4", "Extraction & Agentic AI service (LLM + regex + validation)", "⬜"],
+  ["3", "Synthetic referral documents (15 cases + expected outcomes)", "✅ Done"],
+  ["4", "Extraction & Agentic AI service (LLM + regex + validation)", "⬜ Next"],
   ["5", "Business rules & safety decision engine", "⬜"],
   ["6", "OpenMRS workflow mapping (Referral encounter/obs)", "⬜"],
   ["7", "UiPath REFramework design spec", "⬜"],

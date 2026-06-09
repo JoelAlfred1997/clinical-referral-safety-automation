@@ -1,0 +1,24 @@
+{
+  "referral_id": "REF-015",
+  "source_file": "REF-015-corrupt.pdf",
+  "scenario": "system_exception_unreadable_file",
+  "synthetic": true,
+  "patient_ref": {
+    "name": null,
+    "nhs_number": null,
+    "in_openmrs": null,
+    "note": "File cannot be parsed, so no patient information is available."
+  },
+  "expected_extraction": {
+    "is_referral": null,
+    "note": "Text extraction never completes — the PDF is truncated/corrupt (no valid xref, no %%EOF)."
+  },
+  "expected_missing_fields": null,
+  "expected_confidence": "n/a",
+  "expected_match_result": "NOT_APPLICABLE",
+  "expected_safety_flags": ["FILE_UNREADABLE"],
+  "expected_reason_codes": ["FILE_UNREADABLE"],
+  "expected_bot_decision": "SYSTEM_EXCEPTION",
+  "expected_final_status": "SYSTEM_EXCEPTION_ESCALATED",
+  "notes": "The PDF read/parse step throws a technical exception (corrupt file). Per REFramework this is a System Exception: retry up to the configured limit, capture a screenshot/log, then escalate. Distinct from REF-014 (Business Exception): the distinguishing axis is 'could the file be read at all?' — REF-015 cannot be read (technical), REF-014 reads fine but is the wrong document type (business)."
+}

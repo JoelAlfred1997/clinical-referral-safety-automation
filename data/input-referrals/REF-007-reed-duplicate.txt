@@ -1,0 +1,33 @@
+*** SYNTHETIC TEST DATA — NOT A REAL PATIENT — PORTFOLIO SIMULATION ***
+
+NHS GP REFERRAL LETTER
+
+Date of referral: 24/05/2026
+Referring GP:     Dr Olu Adeyemi (GMC 7083310)
+Practice:         Linthorpe Surgery, Middlesbrough
+Practice tel:     01642 496 030
+To:               Cardiology Department, James Cook University Hospital
+
+PATIENT DETAILS
+Name:        Arthur Reed
+NHS Number:  999 000 0336
+Date of birth: 28/11/1959
+Gender:      Male
+Address:     9 Linthorpe Road, Middlesbrough, TS1 2NX
+Telephone:   07700 900030
+
+REFERRAL
+Speciality:  Cardiology
+Priority:    Routine
+
+Reason for referral:
+66-year-old man with atrial fibrillation and hypertension. Ongoing palpitations
+despite rate control. Grateful for cardiology review and consideration of rhythm
+control strategy.
+
+Current medication: Bisoprolol 5mg OD, Apixaban 5mg BD, Ramipril 5mg OD.
+Allergies: None known.
+
+Yours sincerely,
+Dr Olu Adeyemi
+Linthorpe Surgery

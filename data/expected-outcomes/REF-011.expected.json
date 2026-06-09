@@ -1,0 +1,34 @@
+{
+  "referral_id": "REF-011",
+  "source_file": "REF-011-osei-no-match.txt",
+  "scenario": "no_match",
+  "synthetic": true,
+  "patient_ref": {
+    "synthetic_id": "SYN-034",
+    "nhs_number": "9990000379",
+    "name": "Ibrahim Osei",
+    "in_openmrs": false,
+    "note": "Reserved no-match fixture — deliberately NOT seeded into OpenMRS."
+  },
+  "expected_extraction": {
+    "patient_nhs_number": "9990000379",
+    "patient_first_name": "Ibrahim",
+    "patient_last_name": "Osei",
+    "patient_dob": "1990-04-08",
+    "patient_gender": "M",
+    "referral_date": "2026-05-28",
+    "referring_clinician": "Dr Nadia Rahman",
+    "referring_practice": "Ardwick Green Surgery",
+    "specialty": "Orthopaedics",
+    "priority": "Routine",
+    "reason_for_referral": "Persistent right knee pain with mechanical locking after sporting injury, failed physiotherapy; consideration of MRI."
+  },
+  "expected_missing_fields": [],
+  "expected_confidence": "high",
+  "expected_match_result": "NO_MATCH",
+  "expected_safety_flags": ["PATIENT_NOT_FOUND"],
+  "expected_reason_codes": ["MATCH_NONE"],
+  "expected_bot_decision": "HUMAN_REVIEW_REQUIRED",
+  "expected_final_status": "ROUTED_TO_HUMAN_REVIEW",
+  "notes": "Second no-match fixture (different speciality/demographics from REF-010) to confirm the no-match path is not patient-specific. NHS number and demographics absent from OpenMRS; route to human."
+}

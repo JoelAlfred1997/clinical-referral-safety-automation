@@ -1,0 +1,19 @@
+*** SYNTHETIC TEST DATA — NOT A REAL PATIENT — PORTFOLIO SIMULATION ***
+
+   re ferral  l etter   (scanned / faxed copy - poor quality)
+
+dat3:  30-05-2026
+fr0m:  Dr  J  Okafor ,  Lawr ence  Hil1  Surg ery ,  Bri stol
+
+pt  na me :   Mia    Rob3rts
+nhs :   9 9 9  0 0 0  0 0 8 5
+d.o.b :  26 / 03 / 1995    sex: F
+addr :  4 Lawrenc e Hill , Bri stol  BS5 9QY
+
+re ason :::   pt  c/o  anx iety  + lo w  mo od  for  ~~  mnths ,,, slee p  poor.
+?? refer  psych / iapt  ---  hand writ ing  unc lear  in  parts , som e  text
+illeg ible .  gr ateful  for  rev iew  &&  advis e .   th x
+
+   ( remainder of page faint / not legible )
+
+Dr J Okafor

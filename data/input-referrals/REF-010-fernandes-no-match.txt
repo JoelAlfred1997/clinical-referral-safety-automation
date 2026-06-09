@@ -1,0 +1,33 @@
+*** SYNTHETIC TEST DATA — NOT A REAL PATIENT — PORTFOLIO SIMULATION ***
+
+NHS GP REFERRAL LETTER
+
+Date of referral: 25/05/2026
+Referring GP:     Dr Paul Stevens (GMC 7116643)
+Practice:         Portsea Island Practice, Portsmouth
+Practice tel:     023 9249 6033
+To:               Gastroenterology Department, Queen Alexandra Hospital
+
+PATIENT DETAILS
+Name:        Maria Fernandes
+NHS Number:  999 000 0360
+Date of birth: 21/07/1983
+Gender:      Female
+Address:     18 Margate Road, Portsmouth, PO1 2EP
+Telephone:   07700 900033
+
+REFERRAL
+Speciality:  Gastroenterology
+Priority:    Routine
+
+Reason for referral:
+42-year-old woman with a 3-month history of intermittent abdominal pain and
+altered bowel habit. No red-flag features, normal bloods including FBC and FIT.
+Grateful for gastroenterology review and consideration of further investigation.
+
+Current medication: None.
+Allergies: None known.
+
+Yours sincerely,
+Dr Paul Stevens
+Portsea Island Practice

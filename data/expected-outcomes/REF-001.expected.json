@@ -1,0 +1,33 @@
+{
+  "referral_id": "REF-001",
+  "source_file": "REF-001-bennett-cardiology.txt",
+  "scenario": "exact_match_clean",
+  "synthetic": true,
+  "patient_ref": {
+    "synthetic_id": "SYN-001",
+    "nhs_number": "9990000018",
+    "name": "Oliver Bennett",
+    "in_openmrs": true
+  },
+  "expected_extraction": {
+    "patient_nhs_number": "9990000018",
+    "patient_first_name": "Oliver",
+    "patient_last_name": "Bennett",
+    "patient_dob": "1979-04-12",
+    "patient_gender": "M",
+    "referral_date": "2026-05-20",
+    "referring_clinician": "Dr Sarah Mills",
+    "referring_practice": "The Grange Medical Practice",
+    "specialty": "Cardiology",
+    "priority": "Routine",
+    "reason_for_referral": "Exertional palpitations on a background of hypertension; routine cardiology review and ambulatory ECG."
+  },
+  "expected_missing_fields": [],
+  "expected_confidence": "high",
+  "expected_match_result": "EXACT_MATCH",
+  "expected_safety_flags": [],
+  "expected_reason_codes": ["MATCH_EXACT"],
+  "expected_bot_decision": "AUTO_CREATE_REFERRAL_RECORD",
+  "expected_final_status": "REFERRAL_CREATED_IN_OPENMRS",
+  "notes": "Clean happy path: identifier + demographics agree with OpenMRS, complete and non-urgent. Auto-create Referral encounter via REST, verify by re-read, move file to processed/."
+}

@@ -45,8 +45,9 @@ for the roadmap and Definition of Done.
 | 0 — Scope & architecture | ✅ complete |
 | 1 — OpenMRS local setup | ✅ complete (50 demo patients, REST+FHIR verified) |
 | 2 — Synthetic patient data | ✅ complete (32 synthetic patients, 999-range NHS nums, idempotent seeder) |
-| 3 — Synthetic referral documents | ⬜ next |
-| 4–13 | ⬜ pending |
+| 3 — Synthetic referral documents | ✅ complete (15 referrals + expected-outcome oracles, all scenarios & 4 bot decisions) |
+| 4 — Extraction service | ⬜ next |
+| 5–13 | ⬜ pending |
 
 ## Key documents
 

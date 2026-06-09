@@ -1,0 +1,33 @@
+{
+  "referral_id": "REF-013",
+  "source_file": "REF-013-roberts-low-confidence.txt",
+  "scenario": "low_extraction_confidence",
+  "synthetic": true,
+  "patient_ref": {
+    "synthetic_id": "SYN-008",
+    "nhs_number": "9990000085",
+    "name": "Mia Roberts",
+    "in_openmrs": true
+  },
+  "expected_extraction": {
+    "patient_nhs_number": "9990000085",
+    "patient_first_name": "Mia",
+    "patient_last_name": "Roberts",
+    "patient_dob": "1995-03-26",
+    "patient_gender": "F",
+    "referral_date": "2026-05-30",
+    "referring_clinician": "Dr J Okafor",
+    "referring_practice": "Lawrence Hill Surgery",
+    "specialty": "Psychiatry / IAPT",
+    "priority": "Routine",
+    "reason_for_referral": "Anxiety and low mood for several months with poor sleep; query psychology/IAPT referral. (Text partially illegible.)"
+  },
+  "expected_missing_fields": [],
+  "expected_confidence": "low",
+  "expected_match_result": "EXACT_MATCH",
+  "expected_safety_flags": ["LOW_CONFIDENCE_EXTRACTION"],
+  "expected_reason_codes": ["LOW_EXTRACTION_CONFIDENCE"],
+  "expected_bot_decision": "HUMAN_REVIEW_REQUIRED",
+  "expected_final_status": "ROUTED_TO_HUMAN_REVIEW",
+  "notes": "Simulated poor-quality scan/fax: spaced-out NHS digits (9 9 9 0 0 0 0 0 8 5), typos (Rob3rts), and partly illegible body. Even though the cleaned values resolve to an exact match, the extraction confidence is below threshold, so the case must be human-verified rather than auto-created. Tests the confidence gate independently of match quality."
+}

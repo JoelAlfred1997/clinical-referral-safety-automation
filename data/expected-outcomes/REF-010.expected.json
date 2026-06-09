@@ -1,0 +1,34 @@
+{
+  "referral_id": "REF-010",
+  "source_file": "REF-010-fernandes-no-match.txt",
+  "scenario": "no_match",
+  "synthetic": true,
+  "patient_ref": {
+    "synthetic_id": "SYN-033",
+    "nhs_number": "9990000360",
+    "name": "Maria Fernandes",
+    "in_openmrs": false,
+    "note": "Reserved no-match fixture — deliberately NOT seeded into OpenMRS."
+  },
+  "expected_extraction": {
+    "patient_nhs_number": "9990000360",
+    "patient_first_name": "Maria",
+    "patient_last_name": "Fernandes",
+    "patient_dob": "1983-07-21",
+    "patient_gender": "F",
+    "referral_date": "2026-05-25",
+    "referring_clinician": "Dr Paul Stevens",
+    "referring_practice": "Portsea Island Practice",
+    "specialty": "Gastroenterology",
+    "priority": "Routine",
+    "reason_for_referral": "Intermittent abdominal pain and altered bowel habit, no red flags, normal FIT/FBC; gastro review."
+  },
+  "expected_missing_fields": [],
+  "expected_confidence": "high",
+  "expected_match_result": "NO_MATCH",
+  "expected_safety_flags": ["PATIENT_NOT_FOUND"],
+  "expected_reason_codes": ["MATCH_NONE"],
+  "expected_bot_decision": "HUMAN_REVIEW_REQUIRED",
+  "expected_final_status": "ROUTED_TO_HUMAN_REVIEW",
+  "notes": "Extraction is clean and complete, but neither the NHS number nor the demographics match any patient in OpenMRS. Cannot create a record against an unknown patient; route to human (who may register the patient or reject the referral)."
+}

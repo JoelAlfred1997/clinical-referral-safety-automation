@@ -1,0 +1,27 @@
+{
+  "referral_id": "REF-014",
+  "source_file": "REF-014-not-a-referral.txt",
+  "scenario": "business_exception_not_a_referral",
+  "synthetic": true,
+  "patient_ref": {
+    "name": null,
+    "nhs_number": null,
+    "in_openmrs": null,
+    "note": "Document is an appointment reminder, not a referral — no patient match is attempted."
+  },
+  "expected_extraction": {
+    "is_referral": false,
+    "patient_nhs_number": null,
+    "specialty": null,
+    "priority": null,
+    "reason_for_referral": null
+  },
+  "expected_missing_fields": ["patient_nhs_number", "specialty", "priority", "reason_for_referral"],
+  "expected_confidence": "n/a",
+  "expected_match_result": "NOT_APPLICABLE",
+  "expected_safety_flags": ["NOT_A_REFERRAL"],
+  "expected_reason_codes": ["NOT_A_REFERRAL"],
+  "expected_bot_decision": "BUSINESS_EXCEPTION",
+  "expected_final_status": "BUSINESS_EXCEPTION_FAILED",
+  "notes": "The file is readable but is a clinic appointment reminder, not a referral (no referral intent, no speciality, no clinical reason). This is bad input that retrying will not fix = Business Exception. Log the reason, move the file to failed/, do NOT retry, do NOT route to clinical human review."
+}

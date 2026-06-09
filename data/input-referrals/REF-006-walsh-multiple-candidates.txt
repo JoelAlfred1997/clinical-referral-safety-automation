@@ -1,0 +1,33 @@
+*** SYNTHETIC TEST DATA — NOT A REAL PATIENT — PORTFOLIO SIMULATION ***
+
+NHS GP REFERRAL LETTER
+
+Date of referral: 21/05/2026
+Referring GP:     Dr Manjit Sandhu (GMC 7072299)
+Practice:         Foleshill Road Surgery, Coventry
+Practice tel:     024 7649 6028
+To:               Endocrinology Department, University Hospital Coventry
+
+PATIENT DETAILS
+Name:        Helen Walsh
+Date of birth: 12/03/1975
+Gender:      Female
+Telephone:   07700 900028
+
+(NHS number not supplied on this referral.)
+
+REFERRAL
+Speciality:  Endocrinology
+Priority:    Routine
+
+Reason for referral:
+50-year-old woman with hypothyroidism, fatigue persisting despite levothyroxine
+100mcg. Recent TSH 6.2 mU/L. Grateful for review of replacement dose and further
+investigation of ongoing tiredness.
+
+Current medication: Levothyroxine 100mcg OD.
+Allergies: None known.
+
+Yours sincerely,
+Dr Manjit Sandhu
+Foleshill Road Surgery

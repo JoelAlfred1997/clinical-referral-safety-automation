@@ -1,0 +1,34 @@
+*** SYNTHETIC TEST DATA — NOT A REAL PATIENT — PORTFOLIO SIMULATION ***
+
+NHS GP REFERRAL LETTER
+
+Date of referral: 22/05/2026
+Referring GP:     Dr Imran Hussain (GMC 7033221)
+Practice:         Selly Oak Surgery, Birmingham
+Practice tel:     0121 496 0003
+To:               Diabetes & Endocrinology, Queen Elizabeth Hospital Birmingham
+
+PATIENT DETAILS
+Name:        George Davies
+NHS Number:  999 000 0034
+Date of birth: 09/02/1965
+Gender:      Male
+Address:     7 Oak Tree Lane, Birmingham, B12 9QR
+Telephone:   07700 900003
+
+REFERRAL
+Speciality:  Endocrinology
+Priority:    Routine
+
+Reason for referral:
+61-year-old man with type 2 diabetes and hypertension. HbA1c has risen to
+72 mmol/mol despite metformin 1g BD and dietary advice over the last 6 months.
+No hypoglycaemic episodes. Renal function normal, no proteinuria. Grateful for
+review and advice on intensification of therapy.
+
+Current medication: Metformin 1g BD, Ramipril 5mg OD.
+Allergies: Penicillin (rash).
+
+Yours sincerely,
+Dr Imran Hussain
+Selly Oak Surgery

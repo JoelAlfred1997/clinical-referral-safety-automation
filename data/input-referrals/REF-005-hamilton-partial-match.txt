@@ -1,0 +1,35 @@
+*** SYNTHETIC TEST DATA — NOT A REAL PATIENT — PORTFOLIO SIMULATION ***
+
+NHS GP REFERRAL LETTER
+
+Date of referral: 19/05/2026
+Referring GP:     Dr Fiona Ross (GMC 7061188)
+Practice:         Carden Medical Practice, Aberdeen
+Practice tel:     01224 496 027
+To:               Lipid Clinic, Aberdeen Royal Infirmary
+
+PATIENT DETAILS
+Name:        Leo Hamilton
+Date of birth: 16/12/1976
+Gender:      Male
+Address:     31 Carden Place, Aberdeen, AB10 1UP
+Telephone:   07700 900027
+
+(NHS number not supplied on this referral.)
+
+REFERRAL
+Speciality:  Lipidology
+Priority:    Routine
+
+Reason for referral:
+49-year-old man with persistently raised total cholesterol (7.8 mmol/L) and a
+strong family history of premature ischaemic heart disease. Statin-intolerant
+(myalgia on two agents). Grateful for specialist lipid assessment and advice on
+alternative lipid-lowering therapy.
+
+Current medication: None (statin discontinued).
+Allergies: None known.
+
+Yours sincerely,
+Dr Fiona Ross
+Carden Medical Practice

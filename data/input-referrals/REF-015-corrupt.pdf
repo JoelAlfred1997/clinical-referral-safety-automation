@@ -1,0 +1,12 @@
+%PDF-1.5
+%����
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1
+%%% TRUNCATED / CORRUPT FILE — SYNTHETIC TEST FIXTURE %%%
+%%% This file is intentionally malformed: the object stream is cut off,
+%%% there is no valid xref table and no %%EOF marker. A PDF text-extraction
+%%% step will fail to parse it, which is the System Exception test case.
+‹ÿØÿà JFIF  garbage-bytes ��� Q@#~^&* not-real-pdf-content 8x9q2

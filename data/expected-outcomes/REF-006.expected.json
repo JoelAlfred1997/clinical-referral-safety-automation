@@ -1,0 +1,33 @@
+{
+  "referral_id": "REF-006",
+  "source_file": "REF-006-walsh-multiple-candidates.txt",
+  "scenario": "multiple_candidates",
+  "synthetic": true,
+  "patient_ref": {
+    "name": "Helen Walsh",
+    "candidate_nhs_numbers": ["9990000301", "9990000328"],
+    "in_openmrs": true,
+    "note": "Two distinct OpenMRS patients share name Helen Walsh and DOB 1975-03-12."
+  },
+  "expected_extraction": {
+    "patient_nhs_number": null,
+    "patient_first_name": "Helen",
+    "patient_last_name": "Walsh",
+    "patient_dob": "1975-03-12",
+    "patient_gender": "F",
+    "referral_date": "2026-05-21",
+    "referring_clinician": "Dr Manjit Sandhu",
+    "referring_practice": "Foleshill Road Surgery",
+    "specialty": "Endocrinology",
+    "priority": "Routine",
+    "reason_for_referral": "Hypothyroidism with persistent fatigue and TSH 6.2 despite levothyroxine; dose review."
+  },
+  "expected_missing_fields": ["patient_nhs_number"],
+  "expected_confidence": "medium",
+  "expected_match_result": "MULTIPLE_CANDIDATES",
+  "expected_safety_flags": ["PATIENT_MATCH_RISK"],
+  "expected_reason_codes": ["MATCH_MULTIPLE_CANDIDATES"],
+  "expected_bot_decision": "HUMAN_REVIEW_REQUIRED",
+  "expected_final_status": "ROUTED_TO_HUMAN_REVIEW",
+  "notes": "No NHS number supplied and name + DOB match two OpenMRS patients (9990000301, 9990000328). Cannot safely disambiguate; route to human review to pick the correct patient."
+}

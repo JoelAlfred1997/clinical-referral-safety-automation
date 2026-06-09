@@ -1,0 +1,33 @@
+{
+  "referral_id": "REF-003",
+  "source_file": "REF-003-clarke-respiratory.txt",
+  "scenario": "exact_match_clean",
+  "synthetic": true,
+  "patient_ref": {
+    "synthetic_id": "SYN-002",
+    "nhs_number": "9990000026",
+    "name": "Amelia Clarke",
+    "in_openmrs": true
+  },
+  "expected_extraction": {
+    "patient_nhs_number": "9990000026",
+    "patient_first_name": "Amelia",
+    "patient_last_name": "Clarke",
+    "patient_dob": "1990-11-23",
+    "patient_gender": "F",
+    "referral_date": "2026-05-23",
+    "referring_clinician": "Dr Helen Park",
+    "referring_practice": "Didsbury Health Centre",
+    "specialty": "Respiratory Medicine",
+    "priority": "Routine",
+    "reason_for_referral": "Poorly controlled asthma despite good adherence; specialist review and optimisation."
+  },
+  "expected_missing_fields": [],
+  "expected_confidence": "high",
+  "expected_match_result": "EXACT_MATCH",
+  "expected_safety_flags": [],
+  "expected_reason_codes": ["MATCH_EXACT"],
+  "expected_bot_decision": "AUTO_CREATE_REFERRAL_RECORD",
+  "expected_final_status": "REFERRAL_CREATED_IN_OPENMRS",
+  "notes": "Third clean happy path. Two recent steroid courses noted but no red-flag/urgent criteria, so routine auto-create."
+}

@@ -1,0 +1,21 @@
+*** SYNTHETIC TEST DATA — NOT A REAL PATIENT — PORTFOLIO SIMULATION ***
+
+DIDSBURY HEALTH CENTRE — APPOINTMENT REMINDER
+
+Dear patient,
+
+This is an automated reminder that you have a routine medication review booked
+with the practice nurse.
+
+Appointment date: 04/06/2026 at 10:20
+Location:         Didsbury Health Centre, Manchester
+
+Please bring a list of your current medications. If you need to cancel or
+rearrange, call reception on 0161 496 0002 or reply to this message.
+
+Repeat prescriptions can be ordered via the NHS App.
+
+This is not a clinical referral. No action is required other than attending your
+appointment.
+
+Didsbury Health Centre

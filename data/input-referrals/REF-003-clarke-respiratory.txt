@@ -1,0 +1,35 @@
+*** SYNTHETIC TEST DATA — NOT A REAL PATIENT — PORTFOLIO SIMULATION ***
+
+NHS GP REFERRAL LETTER
+
+Date of referral: 23/05/2026
+Referring GP:     Dr Helen Park (GMC 7044112)
+Practice:         Didsbury Health Centre, Manchester
+Practice tel:     0161 496 0002
+To:               Respiratory Medicine, Wythenshawe Hospital
+
+PATIENT DETAILS
+Name:        Amelia Clarke
+NHS Number:  999 000 0026
+Date of birth: 23/11/1990
+Gender:      Female
+Address:     22 Wilmslow Road, Manchester, M14 5GL
+Telephone:   07700 900002
+
+REFERRAL
+Speciality:  Respiratory Medicine
+Priority:    Routine
+
+Reason for referral:
+35-year-old woman with asthma, increasingly poorly controlled over the last
+3 months despite good inhaler technique and adherence. Using salbutamol most
+days, two courses of oral steroids this year. No nocturnal symptoms currently,
+peak flow variability noted. Non-smoker. Grateful for specialist review and
+optimisation of her management.
+
+Current medication: Beclometasone/formoterol inhaler, Salbutamol PRN.
+Allergies: None known.
+
+Yours sincerely,
+Dr Helen Park
+Didsbury Health Centre

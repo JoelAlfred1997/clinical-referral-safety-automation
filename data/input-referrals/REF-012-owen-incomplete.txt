@@ -1,0 +1,22 @@
+*** SYNTHETIC TEST DATA — NOT A REAL PATIENT — PORTFOLIO SIMULATION ***
+
+NHS GP REFERRAL LETTER
+
+Date of referral: 29/05/2026
+Referring GP:     Dr Mark Trevithick
+Practice:         Mutley Plain Practice, Plymouth
+
+PATIENT DETAILS
+Name:        Daniel Owen
+NHS Number:  999 000 0166
+Date of birth: 03/04/1974
+Gender:      Male
+
+REFERRAL
+
+Reason for referral:
+Please see and advise. Thank you.
+
+Yours sincerely,
+Dr Mark Trevithick
+Mutley Plain Practice

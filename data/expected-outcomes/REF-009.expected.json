@@ -1,0 +1,33 @@
+{
+  "referral_id": "REF-009",
+  "source_file": "REF-009-cole-safeguarding-child.txt",
+  "scenario": "safeguarding_child",
+  "synthetic": true,
+  "patient_ref": {
+    "synthetic_id": "SYN-031",
+    "nhs_number": "9990000344",
+    "name": "Florence Cole",
+    "in_openmrs": true
+  },
+  "expected_extraction": {
+    "patient_nhs_number": "9990000344",
+    "patient_first_name": "Florence",
+    "patient_last_name": "Cole",
+    "patient_dob": "2018-02-14",
+    "patient_gender": "F",
+    "referral_date": "2026-05-27",
+    "referring_clinician": "Dr Rachel Nolan",
+    "referring_practice": "Eastmoor Health Centre",
+    "specialty": "Paediatrics",
+    "priority": "Urgent",
+    "reason_for_referral": "Faltering growth and recurrent unexplained injuries in a child with an active safeguarding alert; urgent paediatric assessment."
+  },
+  "expected_missing_fields": [],
+  "expected_confidence": "high",
+  "expected_match_result": "EXACT_MATCH",
+  "expected_safety_flags": ["SAFEGUARDING", "CHILD_PATIENT", "URGENT_RED_FLAG"],
+  "expected_reason_codes": ["MATCH_EXACT", "SAFEGUARDING", "CHILD_PATIENT"],
+  "expected_bot_decision": "HUMAN_REVIEW_REQUIRED",
+  "expected_final_status": "ROUTED_TO_HUMAN_REVIEW",
+  "notes": "Exact patient match, but safeguarding content and a paediatric (child, DOB 2018) patient. Safeguarding and child cases must always be handled by a human; never auto-create."
+}

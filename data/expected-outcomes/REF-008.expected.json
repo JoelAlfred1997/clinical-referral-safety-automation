@@ -1,0 +1,33 @@
+{
+  "referral_id": "REF-008",
+  "source_file": "REF-008-knight-2ww-suspected-cancer.txt",
+  "scenario": "urgent_2ww_suspected_cancer",
+  "synthetic": true,
+  "patient_ref": {
+    "synthetic_id": "SYN-032",
+    "nhs_number": "9990000352",
+    "name": "Stanley Knight",
+    "in_openmrs": true
+  },
+  "expected_extraction": {
+    "patient_nhs_number": "9990000352",
+    "patient_first_name": "Stanley",
+    "patient_last_name": "Knight",
+    "patient_dob": "1949-06-19",
+    "patient_gender": "M",
+    "referral_date": "2026-05-26",
+    "referring_clinician": "Dr Catherine Lowe",
+    "referring_practice": "St Vincent Medical Practice",
+    "specialty": "Respiratory Medicine",
+    "priority": "2WW",
+    "reason_for_referral": "Haemoptysis, weight loss and a 3cm spiculated right-upper-lobe mass on CXR; suspected lung cancer 2-week-wait."
+  },
+  "expected_missing_fields": [],
+  "expected_confidence": "high",
+  "expected_match_result": "EXACT_MATCH",
+  "expected_safety_flags": ["URGENT_RED_FLAG", "SUSPECTED_CANCER"],
+  "expected_reason_codes": ["MATCH_EXACT", "URGENT_RED_FLAG"],
+  "expected_bot_decision": "HUMAN_REVIEW_REQUIRED",
+  "expected_final_status": "ROUTED_TO_HUMAN_REVIEW",
+  "notes": "Patient matches exactly and the referral is complete, but it is an urgent 2-week-wait suspected-cancer referral. Per the safety boundary, urgent/red-flag content NEVER auto-creates — it is escalated to a human regardless of match quality."
+}

@@ -1,0 +1,33 @@
+{
+  "referral_id": "REF-002",
+  "source_file": "REF-002-davies-endocrinology.txt",
+  "scenario": "exact_match_clean",
+  "synthetic": true,
+  "patient_ref": {
+    "synthetic_id": "SYN-003",
+    "nhs_number": "9990000034",
+    "name": "George Davies",
+    "in_openmrs": true
+  },
+  "expected_extraction": {
+    "patient_nhs_number": "9990000034",
+    "patient_first_name": "George",
+    "patient_last_name": "Davies",
+    "patient_dob": "1965-02-09",
+    "patient_gender": "M",
+    "referral_date": "2026-05-22",
+    "referring_clinician": "Dr Imran Hussain",
+    "referring_practice": "Selly Oak Surgery",
+    "specialty": "Endocrinology",
+    "priority": "Routine",
+    "reason_for_referral": "Rising HbA1c (72 mmol/mol) in type 2 diabetes despite metformin; advice on therapy intensification."
+  },
+  "expected_missing_fields": [],
+  "expected_confidence": "high",
+  "expected_match_result": "EXACT_MATCH",
+  "expected_safety_flags": [],
+  "expected_reason_codes": ["MATCH_EXACT"],
+  "expected_bot_decision": "AUTO_CREATE_REFERRAL_RECORD",
+  "expected_final_status": "REFERRAL_CREATED_IN_OPENMRS",
+  "notes": "Second clean happy path. Penicillin allergy present in body text but not a routing factor."
+}

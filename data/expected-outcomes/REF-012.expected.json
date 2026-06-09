@@ -1,0 +1,33 @@
+{
+  "referral_id": "REF-012",
+  "source_file": "REF-012-owen-incomplete.txt",
+  "scenario": "incomplete_mandatory_fields",
+  "synthetic": true,
+  "patient_ref": {
+    "synthetic_id": "SYN-015",
+    "nhs_number": "9990000166",
+    "name": "Daniel Owen",
+    "in_openmrs": true
+  },
+  "expected_extraction": {
+    "patient_nhs_number": "9990000166",
+    "patient_first_name": "Daniel",
+    "patient_last_name": "Owen",
+    "patient_dob": "1974-04-03",
+    "patient_gender": "M",
+    "referral_date": "2026-05-29",
+    "referring_clinician": "Dr Mark Trevithick",
+    "referring_practice": "Mutley Plain Practice",
+    "specialty": null,
+    "priority": null,
+    "reason_for_referral": "Please see and advise."
+  },
+  "expected_missing_fields": ["specialty", "priority", "reason_for_referral"],
+  "expected_confidence": "high",
+  "expected_match_result": "EXACT_MATCH",
+  "expected_safety_flags": ["INCOMPLETE_REFERRAL"],
+  "expected_reason_codes": ["INCOMPLETE_MANDATORY_FIELDS"],
+  "expected_bot_decision": "HUMAN_REVIEW_REQUIRED",
+  "expected_final_status": "ROUTED_TO_HUMAN_REVIEW",
+  "notes": "Patient identity is unambiguous (exact match), but the referral has no speciality, no priority and no meaningful clinical reason ('Please see and advise.'). The completeness gate fails, so no record can be created; route to human. Demonstrates that a perfect patient match does not bypass the completeness check."
+}
