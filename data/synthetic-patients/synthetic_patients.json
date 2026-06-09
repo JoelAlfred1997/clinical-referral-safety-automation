@@ -1,0 +1,597 @@
+[
+  {
+    "synthetic_id": "SYN-001",
+    "nhs_number": "9990000018",
+    "first_name": "Oliver",
+    "last_name": "Bennett",
+    "date_of_birth": "1979-04-12",
+    "gender": "M",
+    "postcode": "LS6 2AF",
+    "phone": "07700 900001",
+    "gp_practice": "The Grange Medical Practice",
+    "conditions": [
+      "Hypertension"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-002",
+    "nhs_number": "9990000026",
+    "first_name": "Amelia",
+    "last_name": "Clarke",
+    "date_of_birth": "1990-11-23",
+    "gender": "F",
+    "postcode": "M14 5GL",
+    "phone": "07700 900002",
+    "gp_practice": "Didsbury Health Centre",
+    "conditions": [
+      "Asthma"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-003",
+    "nhs_number": "9990000034",
+    "first_name": "George",
+    "last_name": "Davies",
+    "date_of_birth": "1965-02-09",
+    "gender": "M",
+    "postcode": "B12 9QR",
+    "phone": "07700 900003",
+    "gp_practice": "Selly Oak Surgery",
+    "conditions": [
+      "Type 2 diabetes",
+      "Hypertension"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-004",
+    "nhs_number": "9990000042",
+    "first_name": "Isla",
+    "last_name": "Evans",
+    "date_of_birth": "2001-07-30",
+    "gender": "F",
+    "postcode": "NE4 6RT",
+    "phone": "07700 900004",
+    "gp_practice": "Westgate Medical Group",
+    "conditions": [],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-005",
+    "nhs_number": "9990000050",
+    "first_name": "Harry",
+    "last_name": "Foster",
+    "date_of_birth": "1958-12-01",
+    "gender": "M",
+    "postcode": "S2 4QW",
+    "phone": "07700 900005",
+    "gp_practice": "Heeley Green Surgery",
+    "conditions": [
+      "COPD"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-006",
+    "nhs_number": "9990000069",
+    "first_name": "Ava",
+    "last_name": "Griffiths",
+    "date_of_birth": "1986-05-17",
+    "gender": "F",
+    "postcode": "CF24 3AA",
+    "phone": "07700 900006",
+    "gp_practice": "Roath Park Surgery",
+    "conditions": [
+      "Migraine"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-007",
+    "nhs_number": "9990000077",
+    "first_name": "Jack",
+    "last_name": "Hughes",
+    "date_of_birth": "1973-09-08",
+    "gender": "M",
+    "postcode": "L8 7NX",
+    "phone": "07700 900007",
+    "gp_practice": "Princes Park Health Centre",
+    "conditions": [],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-008",
+    "nhs_number": "9990000085",
+    "first_name": "Mia",
+    "last_name": "Roberts",
+    "date_of_birth": "1995-03-26",
+    "gender": "F",
+    "postcode": "BS5 9QY",
+    "phone": "07700 900008",
+    "gp_practice": "Lawrence Hill Surgery",
+    "conditions": [
+      "Anxiety"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-009",
+    "nhs_number": "9990000093",
+    "first_name": "Charlie",
+    "last_name": "Walker",
+    "date_of_birth": "1969-08-14",
+    "gender": "M",
+    "postcode": "LE2 1TR",
+    "phone": "07700 900009",
+    "gp_practice": "Clarendon Park Medical Centre",
+    "conditions": [
+      "Hypertension",
+      "High cholesterol"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-010",
+    "nhs_number": "9990000107",
+    "first_name": "Grace",
+    "last_name": "Wright",
+    "date_of_birth": "1982-01-19",
+    "gender": "F",
+    "postcode": "NG7 2BU",
+    "phone": "07700 900010",
+    "gp_practice": "Lenton Medical Practice",
+    "conditions": [],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-011",
+    "nhs_number": "9990000115",
+    "first_name": "Thomas",
+    "last_name": "Green",
+    "date_of_birth": "1977-06-05",
+    "gender": "M",
+    "postcode": "OX4 1EE",
+    "phone": "07700 900011",
+    "gp_practice": "Cowley Road Medical Practice",
+    "conditions": [
+      "Lower back pain"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-012",
+    "nhs_number": "9990000123",
+    "first_name": "Sophie",
+    "last_name": "Hall",
+    "date_of_birth": "1993-10-11",
+    "gender": "F",
+    "postcode": "CB1 2JD",
+    "phone": "07700 900012",
+    "gp_practice": "Mill Road Surgery",
+    "conditions": [],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-013",
+    "nhs_number": "9990000131",
+    "first_name": "James",
+    "last_name": "Wood",
+    "date_of_birth": "1961-03-22",
+    "gender": "M",
+    "postcode": "HD1 5JP",
+    "phone": "07700 900013",
+    "gp_practice": "Greenhead Family Practice",
+    "conditions": [
+      "Osteoarthritis"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-014",
+    "nhs_number": "9990000158",
+    "first_name": "Lily",
+    "last_name": "Jenkins",
+    "date_of_birth": "1988-12-29",
+    "gender": "F",
+    "postcode": "SA1 3SN",
+    "phone": "07700 900014",
+    "gp_practice": "Uplands Surgery",
+    "conditions": [
+      "Hypothyroidism"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-015",
+    "nhs_number": "9990000166",
+    "first_name": "Daniel",
+    "last_name": "Owen",
+    "date_of_birth": "1974-04-03",
+    "gender": "M",
+    "postcode": "PL4 8NF",
+    "phone": "07700 900015",
+    "gp_practice": "Mutley Plain Practice",
+    "conditions": [],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-016",
+    "nhs_number": "9990000174",
+    "first_name": "Ella",
+    "last_name": "Morgan",
+    "date_of_birth": "1999-09-15",
+    "gender": "F",
+    "postcode": "EX1 2QS",
+    "phone": "07700 900016",
+    "gp_practice": "St Thomas Medical Group",
+    "conditions": [
+      "Eczema"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-017",
+    "nhs_number": "9990000182",
+    "first_name": "William",
+    "last_name": "Phillips",
+    "date_of_birth": "1956-07-27",
+    "gender": "M",
+    "postcode": "DH1 4QX",
+    "phone": "07700 900017",
+    "gp_practice": "Claypath Medical Practice",
+    "conditions": [
+      "Atrial fibrillation"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-018",
+    "nhs_number": "9990000190",
+    "first_name": "Chloe",
+    "last_name": "Edwards",
+    "date_of_birth": "1991-02-18",
+    "gender": "F",
+    "postcode": "YO10 3HE",
+    "phone": "07700 900018",
+    "gp_practice": "Heworth Green Surgery",
+    "conditions": [],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-019",
+    "nhs_number": "9990000204",
+    "first_name": "Joshua",
+    "last_name": "Lewis",
+    "date_of_birth": "1984-11-06",
+    "gender": "M",
+    "postcode": "RG1 5AX",
+    "phone": "07700 900019",
+    "gp_practice": "London Road Surgery",
+    "conditions": [
+      "Depression"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-020",
+    "nhs_number": "9990000212",
+    "first_name": "Freya",
+    "last_name": "Harris",
+    "date_of_birth": "1968-05-21",
+    "gender": "F",
+    "postcode": "GL1 3PX",
+    "phone": "07700 900020",
+    "gp_practice": "Gloucester City Practice",
+    "conditions": [
+      "Hypertension"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-021",
+    "nhs_number": "9990000220",
+    "first_name": "Samuel",
+    "last_name": "Patel",
+    "date_of_birth": "1980-08-02",
+    "gender": "M",
+    "postcode": "LU1 1HR",
+    "phone": "07700 900021",
+    "gp_practice": "Bury Park Medical Centre",
+    "conditions": [
+      "Type 2 diabetes"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-022",
+    "nhs_number": "9990000239",
+    "first_name": "Poppy",
+    "last_name": "Khan",
+    "date_of_birth": "1997-01-09",
+    "gender": "F",
+    "postcode": "BD3 9LP",
+    "phone": "07700 900022",
+    "gp_practice": "Little Horton Lane Surgery",
+    "conditions": [],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-023",
+    "nhs_number": "9990000247",
+    "first_name": "Henry",
+    "last_name": "Ahmed",
+    "date_of_birth": "1971-10-25",
+    "gender": "M",
+    "postcode": "HA0 4LP",
+    "phone": "07700 900023",
+    "gp_practice": "Wembley Family Practice",
+    "conditions": [
+      "Asthma"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-024",
+    "nhs_number": "9990000255",
+    "first_name": "Evie",
+    "last_name": "Begum",
+    "date_of_birth": "1994-06-13",
+    "gender": "F",
+    "postcode": "E1 5JP",
+    "phone": "07700 900024",
+    "gp_practice": "Spitalfields Practice",
+    "conditions": [],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-025",
+    "nhs_number": "9990000263",
+    "first_name": "Alfie",
+    "last_name": "Murphy",
+    "date_of_birth": "1963-03-30",
+    "gender": "M",
+    "postcode": "BT9 6AD",
+    "phone": "07700 900025",
+    "gp_practice": "Lisburn Road Surgery",
+    "conditions": [
+      "Ischaemic heart disease"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-026",
+    "nhs_number": "9990000271",
+    "first_name": "Ruby",
+    "last_name": "Shaw",
+    "date_of_birth": "1985-09-04",
+    "gender": "F",
+    "postcode": "ST4 2RW",
+    "phone": "07700 900026",
+    "gp_practice": "Hartshill Medical Centre",
+    "conditions": [
+      "Hypertension"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "dob_mismatch_target",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-027",
+    "nhs_number": "9990000298",
+    "first_name": "Leo",
+    "last_name": "Hamilton",
+    "date_of_birth": "1976-12-16",
+    "gender": "M",
+    "postcode": "AB10 6RN",
+    "phone": "07700 900027",
+    "gp_practice": "Carden Medical Practice",
+    "conditions": [
+      "High cholesterol"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "partial_match_target",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-028",
+    "nhs_number": "9990000301",
+    "first_name": "Helen",
+    "last_name": "Walsh",
+    "date_of_birth": "1975-03-12",
+    "gender": "F",
+    "postcode": "CV1 2AB",
+    "phone": "07700 900028",
+    "gp_practice": "Foleshill Road Surgery",
+    "conditions": [
+      "Hypothyroidism"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "multiple_candidate",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-029",
+    "nhs_number": "9990000328",
+    "first_name": "Helen",
+    "last_name": "Walsh",
+    "date_of_birth": "1975-03-12",
+    "gender": "F",
+    "postcode": "WS1 3QT",
+    "phone": "07700 900029",
+    "gp_practice": "Palfrey Health Centre",
+    "conditions": [
+      "Asthma"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "multiple_candidate",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-030",
+    "nhs_number": "9990000336",
+    "first_name": "Arthur",
+    "last_name": "Reed",
+    "date_of_birth": "1959-11-28",
+    "gender": "M",
+    "postcode": "TS1 2NX",
+    "phone": "07700 900030",
+    "gp_practice": "Linthorpe Surgery",
+    "conditions": [
+      "Atrial fibrillation",
+      "Hypertension"
+    ],
+    "existing_referral_status": "active:Cardiology",
+    "scenario": "duplicate_target",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-031",
+    "nhs_number": "9990000344",
+    "first_name": "Florence",
+    "last_name": "Cole",
+    "date_of_birth": "2018-02-14",
+    "gender": "F",
+    "postcode": "WF1 4AL",
+    "phone": "07700 900031",
+    "gp_practice": "Eastmoor Health Centre",
+    "conditions": [
+      "Safeguarding alert"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-032",
+    "nhs_number": "9990000352",
+    "first_name": "Stanley",
+    "last_name": "Knight",
+    "date_of_birth": "1949-06-19",
+    "gender": "M",
+    "postcode": "DN1 2EE",
+    "phone": "07700 900032",
+    "gp_practice": "St Vincent Medical Practice",
+    "conditions": [
+      "Suspected lung lesion on CXR"
+    ],
+    "existing_referral_status": "none",
+    "scenario": "standard",
+    "seed_to_openmrs": true,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-033",
+    "nhs_number": "9990000360",
+    "first_name": "Maria",
+    "last_name": "Fernandes",
+    "date_of_birth": "1983-07-21",
+    "gender": "F",
+    "postcode": "PO1 2EP",
+    "phone": "07700 900033",
+    "gp_practice": "Portsea Island Practice",
+    "conditions": [],
+    "existing_referral_status": "none",
+    "scenario": "no_match",
+    "seed_to_openmrs": false,
+    "is_synthetic": true
+  },
+  {
+    "synthetic_id": "SYN-034",
+    "nhs_number": "9990000379",
+    "first_name": "Ibrahim",
+    "last_name": "Osei",
+    "date_of_birth": "1990-04-08",
+    "gender": "M",
+    "postcode": "M1 1AE",
+    "phone": "07700 900034",
+    "gp_practice": "Ardwick Green Surgery",
+    "conditions": [],
+    "existing_referral_status": "none",
+    "scenario": "no_match",
+    "seed_to_openmrs": false,
+    "is_synthetic": true
+  }
+]

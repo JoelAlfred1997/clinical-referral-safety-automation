@@ -1,0 +1,35 @@
+synthetic_id,nhs_number,first_name,last_name,date_of_birth,gender,postcode,phone,gp_practice,conditions,existing_referral_status,scenario,seed_to_openmrs
+SYN-001,9990000018,Oliver,Bennett,1979-04-12,M,LS6 2AF,07700 900001,The Grange Medical Practice,Hypertension,none,standard,True
+SYN-002,9990000026,Amelia,Clarke,1990-11-23,F,M14 5GL,07700 900002,Didsbury Health Centre,Asthma,none,standard,True
+SYN-003,9990000034,George,Davies,1965-02-09,M,B12 9QR,07700 900003,Selly Oak Surgery,Type 2 diabetes; Hypertension,none,standard,True
+SYN-004,9990000042,Isla,Evans,2001-07-30,F,NE4 6RT,07700 900004,Westgate Medical Group,,none,standard,True
+SYN-005,9990000050,Harry,Foster,1958-12-01,M,S2 4QW,07700 900005,Heeley Green Surgery,COPD,none,standard,True
+SYN-006,9990000069,Ava,Griffiths,1986-05-17,F,CF24 3AA,07700 900006,Roath Park Surgery,Migraine,none,standard,True
+SYN-007,9990000077,Jack,Hughes,1973-09-08,M,L8 7NX,07700 900007,Princes Park Health Centre,,none,standard,True
+SYN-008,9990000085,Mia,Roberts,1995-03-26,F,BS5 9QY,07700 900008,Lawrence Hill Surgery,Anxiety,none,standard,True
+SYN-009,9990000093,Charlie,Walker,1969-08-14,M,LE2 1TR,07700 900009,Clarendon Park Medical Centre,Hypertension; High cholesterol,none,standard,True
+SYN-010,9990000107,Grace,Wright,1982-01-19,F,NG7 2BU,07700 900010,Lenton Medical Practice,,none,standard,True
+SYN-011,9990000115,Thomas,Green,1977-06-05,M,OX4 1EE,07700 900011,Cowley Road Medical Practice,Lower back pain,none,standard,True
+SYN-012,9990000123,Sophie,Hall,1993-10-11,F,CB1 2JD,07700 900012,Mill Road Surgery,,none,standard,True
+SYN-013,9990000131,James,Wood,1961-03-22,M,HD1 5JP,07700 900013,Greenhead Family Practice,Osteoarthritis,none,standard,True
+SYN-014,9990000158,Lily,Jenkins,1988-12-29,F,SA1 3SN,07700 900014,Uplands Surgery,Hypothyroidism,none,standard,True
+SYN-015,9990000166,Daniel,Owen,1974-04-03,M,PL4 8NF,07700 900015,Mutley Plain Practice,,none,standard,True
+SYN-016,9990000174,Ella,Morgan,1999-09-15,F,EX1 2QS,07700 900016,St Thomas Medical Group,Eczema,none,standard,True
+SYN-017,9990000182,William,Phillips,1956-07-27,M,DH1 4QX,07700 900017,Claypath Medical Practice,Atrial fibrillation,none,standard,True
+SYN-018,9990000190,Chloe,Edwards,1991-02-18,F,YO10 3HE,07700 900018,Heworth Green Surgery,,none,standard,True
+SYN-019,9990000204,Joshua,Lewis,1984-11-06,M,RG1 5AX,07700 900019,London Road Surgery,Depression,none,standard,True
+SYN-020,9990000212,Freya,Harris,1968-05-21,F,GL1 3PX,07700 900020,Gloucester City Practice,Hypertension,none,standard,True
+SYN-021,9990000220,Samuel,Patel,1980-08-02,M,LU1 1HR,07700 900021,Bury Park Medical Centre,Type 2 diabetes,none,standard,True
+SYN-022,9990000239,Poppy,Khan,1997-01-09,F,BD3 9LP,07700 900022,Little Horton Lane Surgery,,none,standard,True
+SYN-023,9990000247,Henry,Ahmed,1971-10-25,M,HA0 4LP,07700 900023,Wembley Family Practice,Asthma,none,standard,True
+SYN-024,9990000255,Evie,Begum,1994-06-13,F,E1 5JP,07700 900024,Spitalfields Practice,,none,standard,True
+SYN-025,9990000263,Alfie,Murphy,1963-03-30,M,BT9 6AD,07700 900025,Lisburn Road Surgery,Ischaemic heart disease,none,standard,True
+SYN-026,9990000271,Ruby,Shaw,1985-09-04,F,ST4 2RW,07700 900026,Hartshill Medical Centre,Hypertension,none,dob_mismatch_target,True
+SYN-027,9990000298,Leo,Hamilton,1976-12-16,M,AB10 6RN,07700 900027,Carden Medical Practice,High cholesterol,none,partial_match_target,True
+SYN-028,9990000301,Helen,Walsh,1975-03-12,F,CV1 2AB,07700 900028,Foleshill Road Surgery,Hypothyroidism,none,multiple_candidate,True
+SYN-029,9990000328,Helen,Walsh,1975-03-12,F,WS1 3QT,07700 900029,Palfrey Health Centre,Asthma,none,multiple_candidate,True
+SYN-030,9990000336,Arthur,Reed,1959-11-28,M,TS1 2NX,07700 900030,Linthorpe Surgery,Atrial fibrillation; Hypertension,active:Cardiology,duplicate_target,True
+SYN-031,9990000344,Florence,Cole,2018-02-14,F,WF1 4AL,07700 900031,Eastmoor Health Centre,Safeguarding alert,none,standard,True
+SYN-032,9990000352,Stanley,Knight,1949-06-19,M,DN1 2EE,07700 900032,St Vincent Medical Practice,Suspected lung lesion on CXR,none,standard,True
+SYN-033,9990000360,Maria,Fernandes,1983-07-21,F,PO1 2EP,07700 900033,Portsea Island Practice,,none,no_match,False
+SYN-034,9990000379,Ibrahim,Osei,1990-04-08,M,M1 1AE,07700 900034,Ardwick Green Surgery,,none,no_match,False
