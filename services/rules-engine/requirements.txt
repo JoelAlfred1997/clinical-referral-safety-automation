@@ -1,0 +1,8 @@
+# Rules & safety decision engine — dependencies are OPTIONAL.
+# The whole engine (matching, rules, decision) runs on a bare Python 3.9+ stdlib
+# with NONE of these installed, against the synthetic-patient seed file.
+
+jsonschema>=4.0      # richer decision-schema validation (falls back to a built-in check)
+
+# No HTTP client is needed: the optional OpenMRS patient-match backend uses the
+# Python stdlib (urllib), exactly like the Phase 2 seeder.

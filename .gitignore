@@ -29,6 +29,7 @@ data/processed/*
 data/failed/*
 data/review/*
 data/extracted-json/*
+data/decisions/*
 !data/**/.gitkeep
 reports/*.xlsx
 *.sqlite
