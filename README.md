@@ -46,8 +46,9 @@ for the roadmap and Definition of Done.
 | 1 — OpenMRS local setup | ✅ complete (50 demo patients, REST+FHIR verified) |
 | 2 — Synthetic patient data | ✅ complete (32 synthetic patients, 999-range NHS nums, idempotent seeder) |
 | 3 — Synthetic referral documents | ✅ complete (15 referrals + expected-outcome oracles, all scenarios & 4 bot decisions) |
-| 4 — Extraction service | ⬜ next |
-| 5–13 | ⬜ pending |
+| 4 — Extraction service | ✅ complete (LLM + regex + schema validation; 15/15 extract correctly vs oracles) |
+| 5 — Rules & safety decision engine | ⬜ next |
+| 6–13 | ⬜ pending |
 
 ## Key documents
 

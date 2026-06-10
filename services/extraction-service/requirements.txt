@@ -1,0 +1,7 @@
+# Extraction service — ALL dependencies are OPTIONAL.
+# The deterministic regex path (the guardrail) runs on a bare Python 3.9+ stdlib
+# with NONE of these installed. Install them only to enable the extras noted.
+
+jsonschema>=4.0      # richer schema validation (falls back to a built-in check)
+pypdf>=4.0           # PDF text extraction (falls back to a structural check)
+requests>=2.28       # optional LLM path HTTP calls (only used when USE_LLM=true)

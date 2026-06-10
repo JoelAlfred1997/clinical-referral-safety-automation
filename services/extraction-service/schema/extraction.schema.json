@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://nhs-referral-safety.local/schema/extraction.schema.json",
+  "title": "Referral extraction result",
+  "description": "Output of the Phase 4 extraction service for a single referral document. SYNTHETIC DATA ONLY. The extractor reads the document, extracts structured referral fields, and reports completeness and confidence. It does NOT perform patient matching against OpenMRS and does NOT make any clinical or routing decision — those are Phase 5/6. Match-dependent fields (match_result, bot_decision, final_status) are intentionally absent here.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "referral_id",
+    "source_file",
+    "synthetic",
+    "extractor_version",
+    "extraction_method",
+    "extraction_status",
+    "is_referral",
+    "extraction",
+    "missing_fields",
+    "confidence",
+    "confidence_score",
+    "extracted_at"
+  ],
+  "properties": {
+    "referral_id": {
+      "type": "string",
+      "pattern": "^REF-[0-9]{3}$",
+      "description": "Stable id derived from the source filename (REF-NNN)."
+    },
+    "source_file": {
+      "type": "string",
+      "description": "Original referral filename in data/input-referrals/."
+    },
+    "synthetic": {
+      "const": true,
+      "description": "Hard constraint: this project only ever processes synthetic data."
+    },
+    "extractor_version": {
+      "type": "string"
+    },
+    "extraction_method": {
+      "type": "string",
+      "enum": ["regex", "llm", "llm+regex-fallback", "none"],
+      "description": "Which path produced the result. 'none' when the file could not be read."
+    },
+    "extraction_status": {
+      "type": "string",
+      "enum": ["OK", "NOT_A_REFERRAL", "FILE_UNREADABLE"],
+      "description": "OK = a referral was parsed; NOT_A_REFERRAL = readable but not a referral (business exception input); FILE_UNREADABLE = could not read/parse the file (system exception input)."
+    },
+    "is_referral": {
+      "type": ["boolean", "null"],
+      "description": "true/false once the document is read; null when the file is unreadable."
+    },
+    "extraction": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Extracted referral fields. Any field that could not be found is null.",
+      "required": [
+        "patient_nhs_number",
+        "patient_first_name",
+        "patient_last_name",
+        "patient_dob",
+        "patient_gender",
+        "referral_date",
+        "referring_clinician",
+        "referring_practice",
+        "specialty",
+        "priority",
+        "reason_for_referral"
+      ],
+      "properties": {
+        "patient_nhs_number": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9]{10}$",
+          "description": "10-digit NHS number, spaces stripped. Synthetic 999-range."
+        },
+        "patient_first_name": { "type": ["string", "null"] },
+        "patient_last_name": { "type": ["string", "null"] },
+        "patient_dob": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+          "description": "ISO 8601 date (YYYY-MM-DD), normalised from dd/mm/yyyy."
+        },
+        "patient_gender": {
+          "type": ["string", "null"],
+          "enum": ["M", "F", null]
+        },
+        "referral_date": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        },
+        "referring_clinician": { "type": ["string", "null"] },
+        "referring_practice": { "type": ["string", "null"] },
+        "specialty": { "type": ["string", "null"] },
+        "priority": {
+          "type": ["string", "null"],
+          "enum": ["Routine", "Urgent", "2WW", null],
+          "description": "Normalised priority. 2WW = 2-week-wait / suspected cancer."
+        },
+        "reason_for_referral": { "type": ["string", "null"] }
+      }
+    },
+    "missing_fields": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "string",
+        "enum": [
+          "patient_nhs_number",
+          "patient_first_name",
+          "patient_last_name",
+          "patient_dob",
+          "patient_gender",
+          "referral_date",
+          "referring_clinician",
+          "referring_practice",
+          "specialty",
+          "priority",
+          "reason_for_referral"
+        ]
+      },
+      "description": "Mandatory fields that are absent or non-substantive. null only when the file is unreadable."
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low", "n/a"],
+      "description": "Categorical extraction confidence. n/a when not a referral or unreadable."
+    },
+    "confidence_score": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Illustrative numeric score backing the category; null when n/a."
+    },
+    "confidence_reasons": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Human-readable reasons for the confidence category (audit trail)."
+    },
+    "extraction_signals": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "ADVISORY text-derived hints for the Phase 5 rules engine. NON-AUTHORITATIVE: the extractor flags these for a human/rules to act on; it never routes or decides on them itself.",
+      "properties": {
+        "urgent_red_flag": { "type": "boolean" },
+        "suspected_cancer": { "type": "boolean" },
+        "safeguarding": { "type": "boolean" },
+        "child_patient": { "type": ["boolean", "null"] }
+      }
+    },
+    "read_error": {
+      "type": ["string", "null"],
+      "description": "Technical error message when extraction_status = FILE_UNREADABLE."
+    },
+    "extracted_at": {
+      "type": "string",
+      "description": "UTC ISO 8601 timestamp of extraction."
+    }
+  }
+}
