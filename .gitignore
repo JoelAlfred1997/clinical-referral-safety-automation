@@ -24,6 +24,9 @@ venv/
 .pytest_cache/
 .mypy_cache/
 
+# Generated, environment-specific OpenMRS UUIDs (regenerate via setup_referral_metadata.py)
+services/openmrs-workflow/config/referral-metadata.json
+
 # ── Runtime data (synthetic, but keep the repo clean) ─────────────
 data/processed/*
 data/failed/*

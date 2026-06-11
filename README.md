@@ -48,8 +48,9 @@ for the roadmap and Definition of Done.
 | 3 — Synthetic referral documents | ✅ complete (15 referrals + expected-outcome oracles, all scenarios & 4 bot decisions) |
 | 4 — Extraction service | ✅ complete (LLM + regex + schema validation; 15/15 extract correctly vs oracles) |
 | 5 — Rules & safety decision engine | ✅ complete (patient match + deterministic safety rules; 15/15 decisions match oracles; risky→review) |
-| 6 — OpenMRS workflow mapping | ⬜ next |
-| 7–13 | ⬜ pending |
+| 6 — OpenMRS workflow mapping | ✅ complete (REST create + re-read verify; idempotent; live duplicate check; 11/11 acceptance) |
+| 7 — REFramework design spec | ⬜ next |
+| 8–13 | ⬜ pending |
 
 ## Key documents
 
