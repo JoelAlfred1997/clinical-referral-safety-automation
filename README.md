@@ -49,8 +49,9 @@ for the roadmap and Definition of Done.
 | 4 — Extraction service | ✅ complete (LLM + regex + schema validation; 15/15 extract correctly vs oracles) |
 | 5 — Rules & safety decision engine | ✅ complete (patient match + deterministic safety rules; 15/15 decisions match oracles; risky→review) |
 | 6 — OpenMRS workflow mapping | ✅ complete (REST create + re-read verify; idempotent; live duplicate check; 11/11 acceptance) |
-| 7 — REFramework design spec | ⬜ next |
-| 8–13 | ⬜ pending |
+| 7 — REFramework design spec | ✅ complete (buildable Dispatcher + Performer design, Config.xlsx, BE/SE separated; 12/12 design review) |
+| 8 — UiPath build | ⬜ next |
+| 9–13 | ⬜ pending |
 
 ## Key documents
 
