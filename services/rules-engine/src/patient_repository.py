@@ -105,12 +105,15 @@ class OpenmrsPatientRepository:
 
     Stdlib only (urllib), same auth/host conventions as the Phase 2 seeder.
 
-    NOTE on duplicate detection: ``existing_referral_status`` requires the
-    'Referral' encounter type/concepts, which are created in Phase 6. Until then
-    this backend reports "none" (the duplicate check is inert against live
-    OpenMRS), while the local-seed backend carries the status so the duplicate
-    scenario (REF-007) is still exercised by the Phase 5 gate. This is the
-    documented dependency in data/expected-outcomes/README.md.
+    Duplicate detection (Phase 8 wiring): ``existing_referral_status`` is now
+    queried LIVE. After Phase 6 created the 'Referral' encounter type/concepts,
+    this backend reads each patient's active Referral encounters and returns
+    "active:<Speciality>" for the first active one (else "none") -- the same fact
+    the local-seed backend carries, so the duplicate scenario (REF-007) is now
+    detected against live OpenMRS by the decision service the performer calls.
+    The resolved concept UUIDs come from the Phase 6 metadata cache
+    (services/openmrs-workflow/config/referral-metadata.json). If that cache is
+    absent the backend degrades gracefully to "none".
     """
 
     source = "openmrs"
@@ -120,6 +123,7 @@ class OpenmrsPatientRepository:
         rest_url: Optional[str] = None,
         username: Optional[str] = None,
         password: Optional[str] = None,
+        metadata_path: Optional[str] = None,
     ):
         self.rest = (rest_url or os.environ.get(
             "OPENMRS_REST_URL", "http://localhost/openmrs/ws/rest/v1"
@@ -127,6 +131,53 @@ class OpenmrsPatientRepository:
         user = username or os.environ.get("OPENMRS_USERNAME", "admin")
         pwd = password or os.environ.get("OPENMRS_PASSWORD", "Admin123")
         self._auth = "Basic " + base64.b64encode(f"{user}:{pwd}".encode()).decode()
+        self._referral_meta = self._load_referral_metadata(metadata_path)
+
+    @staticmethod
+    def _load_referral_metadata(metadata_path: Optional[str]) -> Optional[Dict]:
+        path = Path(metadata_path) if metadata_path else Path(os.environ.get(
+            "REFERRAL_METADATA_PATH",
+            _REPO_ROOT / "services" / "openmrs-workflow" / "config" / "referral-metadata.json",
+        ))
+        try:
+            meta = json.loads(Path(path).read_text(encoding="utf-8"))
+            concepts = meta.get("concepts", {})
+            if meta.get("encounter_type_uuid") and concepts.get("status") and concepts.get("speciality"):
+                return {
+                    "encounter_type_uuid": meta["encounter_type_uuid"],
+                    "status_uuid": concepts["status"],
+                    "speciality_uuid": concepts["speciality"],
+                }
+        except (OSError, ValueError):
+            pass
+        return None
+
+    def _existing_referral_status(self, patient_uuid: Optional[str]) -> str:
+        """Live duplicate signal: 'active:<Speciality>' for the first active
+        Referral encounter, else 'none'. Mirrors openmrs-workflow."""
+        meta = self._referral_meta
+        if not (patient_uuid and meta):
+            return "none"
+        rep = "custom:(uuid,voided,obs:(concept:(uuid),value))"
+        status, data = self._get(
+            f"/encounter?patient={patient_uuid}"
+            f"&encounterType={meta['encounter_type_uuid']}&v={rep}&limit=100"
+        )
+        if status != 200:
+            return "none"
+        for enc in data.get("results", []):
+            if enc.get("voided"):
+                continue
+            status_val, speciality_val = None, None
+            for obs in enc.get("obs", []):
+                cuuid = (obs.get("concept") or {}).get("uuid")
+                if cuuid == meta["status_uuid"]:
+                    status_val = obs.get("value")
+                elif cuuid == meta["speciality_uuid"]:
+                    speciality_val = obs.get("value")
+            if str(status_val or "").strip().lower() == "active" and speciality_val:
+                return f"active:{speciality_val}"
+        return "none"
 
     def _get(self, path: str):
         url = path if path.startswith("http") else f"{self.rest}{path}"
@@ -155,7 +206,7 @@ class OpenmrsPatientRepository:
                 "last_name": name.get("familyName"),
                 "date_of_birth": (person.get("birthdate") or "")[:10] or None,
                 "gender": person.get("gender"),
-                "existing_referral_status": "none",  # see class docstring
+                "existing_referral_status": self._existing_referral_status(full.get("uuid")),
             },
             self.source,
         )

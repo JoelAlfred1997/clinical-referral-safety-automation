@@ -50,8 +50,9 @@ for the roadmap and Definition of Done.
 | 5 — Rules & safety decision engine | ✅ complete (patient match + deterministic safety rules; 15/15 decisions match oracles; risky→review) |
 | 6 — OpenMRS workflow mapping | ✅ complete (REST create + re-read verify; idempotent; live duplicate check; 11/11 acceptance) |
 | 7 — REFramework design spec | ✅ complete (buildable Dispatcher + Performer design, Config.xlsx, BE/SE separated; 12/12 design review) |
-| 8 — UiPath build | ⬜ next |
-| 9–13 | ⬜ pending |
+| 8 — UiPath build | ✅ complete (Dispatcher + REFramework Performer; live Orchestrator queue run; 15/15 — 3→OpenMRS, 10→review, dup detected, 1 BE, 1 SE) |
+| 9 — Human-in-the-loop review | ⬜ next |
+| 10–13 | ⬜ pending |
 
 ## Key documents
 

@@ -1,0 +1,354 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="50">
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="40">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="400,600" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="referralId" />
+      <Variable x:TypeArguments="x:String" Name="sourcePath" />
+      <Variable x:TypeArguments="x:String" Name="sourceFile" />
+      <Variable x:TypeArguments="x:String" Name="extractResp" />
+      <Variable x:TypeArguments="x:Int32" Name="extractStatus" />
+      <Variable x:TypeArguments="x:String" Name="decideResp" />
+      <Variable x:TypeArguments="x:Int32" Name="decideStatus" />
+      <Variable x:TypeArguments="njl:JObject" Name="decision" />
+      <Variable x:TypeArguments="x:String" Name="botDecision" />
+      <Variable x:TypeArguments="x:String" Name="finalStatus" />
+      <Variable x:TypeArguments="x:String" Name="matchResult" />
+      <Variable x:TypeArguments="x:String" Name="reasonCodes" />
+      <Variable x:TypeArguments="x:String" Name="auditLine" />
+      <Variable x:TypeArguments="x:String" Name="writebackResp" />
+      <Variable x:TypeArguments="x:Int32" Name="writebackStatus" />
+    </Sequence.Variables>
+
+    <Assign DisplayName="Read queue item fields" sap2010:WorkflowViewState.IdRef="Assign_Fields">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[referralId]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("ReferralId").ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Read SourcePath" sap2010:WorkflowViewState.IdRef="Assign_SP">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[sourcePath]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("SourcePath").ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Read SourceFile" sap2010:WorkflowViewState.IdRef="Assign_SF">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[sourceFile]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("SourceFile").ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
+
+    <ui:LogMessage DisplayName="Log start" sap2010:WorkflowViewState.IdRef="LogMessage_Start" Level="Info" Message="[&quot;Processing &quot; &amp; referralId &amp; &quot; (&quot; &amp; sourceFile &amp; &quot;)&quot;]" />
+
+    <If DisplayName="Synthetic-data guard" sap2010:WorkflowViewState.IdRef="If_Synthetic">
+      <If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">[Not Convert.ToBoolean(in_TransactionItem.SpecificContent("Synthetic"))]</InArgument>
+      </If.Condition>
+      <If.Then>
+        <Sequence DisplayName="Reject non-synthetic" sap2010:WorkflowViewState.IdRef="Seq_NonSynth">
+          <Throw DisplayName="Throw non-synthetic BRE" sap2010:WorkflowViewState.IdRef="Throw_NonSynth">
+            <Throw.Exception>
+              <InArgument x:TypeArguments="s:Exception">[New UiPath.Core.BusinessRuleException("Non-synthetic input refused: " &amp; referralId)]</InArgument>
+            </Throw.Exception>
+          </Throw>
+        </Sequence>
+      </If.Then>
+    </If>
+
+    <ui:HttpClient DisplayName="POST /extract" sap2010:WorkflowViewState.IdRef="Http_Extract" AcceptFormat="JSON" AuthenticationType="None" BodyFormat="application/json" Method="POST" TimeoutMS="60000">
+      <ui:HttpClient.EndPoint>
+        <InArgument x:TypeArguments="x:String">[in_Config("ExtractionServiceUrl").ToString() &amp; "/extract"]</InArgument>
+      </ui:HttpClient.EndPoint>
+      <ui:HttpClient.Body>
+        <InArgument x:TypeArguments="x:String">["{""path"":""" &amp; sourcePath.Replace("\","/") &amp; """}"]</InArgument>
+      </ui:HttpClient.Body>
+      <ui:HttpClient.Result>
+        <OutArgument x:TypeArguments="x:String">[extractResp]</OutArgument>
+      </ui:HttpClient.Result>
+      <ui:HttpClient.StatusCode>
+        <OutArgument x:TypeArguments="x:Int32">[extractStatus]</OutArgument>
+      </ui:HttpClient.StatusCode>
+    </ui:HttpClient>
+
+    <If DisplayName="Extract HTTP ok?" sap2010:WorkflowViewState.IdRef="If_ExtractStatus">
+      <If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">[extractStatus &lt; 200 OrElse extractStatus &gt;= 300]</InArgument>
+      </If.Condition>
+      <If.Then>
+        <Sequence DisplayName="Extract failed" sap2010:WorkflowViewState.IdRef="Seq_ExtractFail">
+          <Throw DisplayName="Throw extract SE" sap2010:WorkflowViewState.IdRef="Throw_Extract">
+            <Throw.Exception>
+              <InArgument x:TypeArguments="s:Exception">[New Exception("Extraction service HTTP " &amp; extractStatus.ToString() &amp; " for " &amp; referralId)]</InArgument>
+            </Throw.Exception>
+          </Throw>
+        </Sequence>
+      </If.Then>
+    </If>
+
+    <ui:WriteTextFile DisplayName="Save extraction JSON" sap2010:WorkflowViewState.IdRef="Write_Extract" Encoding="utf-8">
+      <ui:WriteTextFile.FileName>
+        <InArgument x:TypeArguments="x:String">[Path.Combine(in_Config("ExtractedJsonFolder").ToString(), referralId &amp; ".extracted.json")]</InArgument>
+      </ui:WriteTextFile.FileName>
+      <ui:WriteTextFile.Text>
+        <InArgument x:TypeArguments="x:String">[extractResp]</InArgument>
+      </ui:WriteTextFile.Text>
+    </ui:WriteTextFile>
+
+    <ui:HttpClient DisplayName="POST /decide" sap2010:WorkflowViewState.IdRef="Http_Decide" AcceptFormat="JSON" AuthenticationType="None" BodyFormat="application/json" Method="POST" TimeoutMS="60000">
+      <ui:HttpClient.EndPoint>
+        <InArgument x:TypeArguments="x:String">[in_Config("DecisionServiceUrl").ToString() &amp; "/decide"]</InArgument>
+      </ui:HttpClient.EndPoint>
+      <ui:HttpClient.Body>
+        <InArgument x:TypeArguments="x:String">["{""extraction"":" &amp; extractResp &amp; ",""source"":""" &amp; in_Config("PatientMatchSource").ToString() &amp; """}"]</InArgument>
+      </ui:HttpClient.Body>
+      <ui:HttpClient.Result>
+        <OutArgument x:TypeArguments="x:String">[decideResp]</OutArgument>
+      </ui:HttpClient.Result>
+      <ui:HttpClient.StatusCode>
+        <OutArgument x:TypeArguments="x:Int32">[decideStatus]</OutArgument>
+      </ui:HttpClient.StatusCode>
+    </ui:HttpClient>
+
+    <If DisplayName="Decide HTTP ok?" sap2010:WorkflowViewState.IdRef="If_DecideStatus">
+      <If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">[decideStatus &lt; 200 OrElse decideStatus &gt;= 300]</InArgument>
+      </If.Condition>
+      <If.Then>
+        <Sequence DisplayName="Decide failed" sap2010:WorkflowViewState.IdRef="Seq_DecideFail">
+          <Throw DisplayName="Throw decide SE" sap2010:WorkflowViewState.IdRef="Throw_Decide">
+            <Throw.Exception>
+              <InArgument x:TypeArguments="s:Exception">[New Exception("Decision service HTTP " &amp; decideStatus.ToString() &amp; " for " &amp; referralId)]</InArgument>
+            </Throw.Exception>
+          </Throw>
+        </Sequence>
+      </If.Then>
+    </If>
+
+    <ui:WriteTextFile DisplayName="Save decision JSON" sap2010:WorkflowViewState.IdRef="Write_Decide" Encoding="utf-8">
+      <ui:WriteTextFile.FileName>
+        <InArgument x:TypeArguments="x:String">[Path.Combine(in_Config("DecisionsFolder").ToString(), referralId &amp; ".decision.json")]</InArgument>
+      </ui:WriteTextFile.FileName>
+      <ui:WriteTextFile.Text>
+        <InArgument x:TypeArguments="x:String">[decideResp]</InArgument>
+      </ui:WriteTextFile.Text>
+    </ui:WriteTextFile>
+
+    <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Parse decision" sap2010:WorkflowViewState.IdRef="Deserialize_Decide">
+      <ui:DeserializeJson.JsonString>
+        <InArgument x:TypeArguments="x:String">[decideResp]</InArgument>
+      </ui:DeserializeJson.JsonString>
+      <ui:DeserializeJson.JsonObject>
+        <OutArgument x:TypeArguments="njl:JObject">[decision]</OutArgument>
+      </ui:DeserializeJson.JsonObject>
+    </ui:DeserializeJson>
+
+    <Assign DisplayName="bot_decision" sap2010:WorkflowViewState.IdRef="Assign_Bot">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[botDecision]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[decision("bot_decision").ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="final_status" sap2010:WorkflowViewState.IdRef="Assign_Final">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[finalStatus]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[decision("final_status").ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="match_result" sap2010:WorkflowViewState.IdRef="Assign_Match">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[matchResult]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[decision("match_result").ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="reason_codes" sap2010:WorkflowViewState.IdRef="Assign_Reasons">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[reasonCodes]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[String.Join("|", decision("reason_codes").Select(Function(t) t.ToString()))]</InArgument>
+      </Assign.Value>
+    </Assign>
+
+    <ui:LogMessage DisplayName="Log decision" sap2010:WorkflowViewState.IdRef="LogMessage_Decision" Level="Info" Message="[referralId &amp; &quot;: &quot; &amp; botDecision &amp; &quot; (&quot; &amp; matchResult &amp; &quot;) reasons=&quot; &amp; reasonCodes]" />
+
+    <Assign DisplayName="Build audit row" sap2010:WorkflowViewState.IdRef="Assign_Audit">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[auditLine]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[DateTime.UtcNow.ToString("o") &amp; "," &amp; referralId &amp; "," &amp; botDecision &amp; "," &amp; finalStatus &amp; "," &amp; matchResult &amp; ",""" &amp; reasonCodes &amp; """"]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:AppendLine DisplayName="Write audit row" sap2010:WorkflowViewState.IdRef="Append_Audit" Encoding="utf-8">
+      <ui:AppendLine.FileName>
+        <InArgument x:TypeArguments="x:String">[in_Config("AuditCsvPath").ToString()]</InArgument>
+      </ui:AppendLine.FileName>
+      <ui:AppendLine.Text>
+        <InArgument x:TypeArguments="x:String">[auditLine]</InArgument>
+      </ui:AppendLine.Text>
+    </ui:AppendLine>
+
+    <Switch x:TypeArguments="x:String" DisplayName="Route on bot_decision" sap2010:WorkflowViewState.IdRef="Switch_Route">
+      <Switch.Expression>
+        <InArgument x:TypeArguments="x:String">[botDecision]</InArgument>
+      </Switch.Expression>
+      <Switch.Default>
+        <Sequence DisplayName="Unexpected decision" sap2010:WorkflowViewState.IdRef="Seq_Default">
+          <Throw DisplayName="Throw unexpected BRE" sap2010:WorkflowViewState.IdRef="Throw_Default">
+            <Throw.Exception>
+              <InArgument x:TypeArguments="s:Exception">[New UiPath.Core.BusinessRuleException("Unexpected bot_decision '" &amp; botDecision &amp; "' for " &amp; referralId)]</InArgument>
+            </Throw.Exception>
+          </Throw>
+        </Sequence>
+      </Switch.Default>
+      <Sequence x:Key="AUTO_CREATE_REFERRAL_RECORD" DisplayName="Auto-create in OpenMRS" sap2010:WorkflowViewState.IdRef="Seq_Auto">
+        <ui:HttpClient DisplayName="POST /writeback" sap2010:WorkflowViewState.IdRef="Http_Writeback" AcceptFormat="JSON" AuthenticationType="None" BodyFormat="application/json" Method="POST" TimeoutMS="120000">
+          <ui:HttpClient.EndPoint>
+            <InArgument x:TypeArguments="x:String">[in_Config("WritebackServiceUrl").ToString() &amp; "/writeback"]</InArgument>
+          </ui:HttpClient.EndPoint>
+          <ui:HttpClient.Body>
+            <InArgument x:TypeArguments="x:String">["{""extraction"":" &amp; extractResp &amp; ",""decision"":" &amp; decideResp &amp; "}"]</InArgument>
+          </ui:HttpClient.Body>
+          <ui:HttpClient.Result>
+            <OutArgument x:TypeArguments="x:String">[writebackResp]</OutArgument>
+          </ui:HttpClient.Result>
+          <ui:HttpClient.StatusCode>
+            <OutArgument x:TypeArguments="x:Int32">[writebackStatus]</OutArgument>
+          </ui:HttpClient.StatusCode>
+        </ui:HttpClient>
+        <If DisplayName="Writeback ok?" sap2010:WorkflowViewState.IdRef="If_Writeback">
+          <If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">[writebackStatus &lt; 200 OrElse writebackStatus &gt;= 300]</InArgument>
+          </If.Condition>
+          <If.Then>
+            <Sequence DisplayName="Writeback failed" sap2010:WorkflowViewState.IdRef="Seq_WbFail">
+              <Throw DisplayName="Throw writeback SE" sap2010:WorkflowViewState.IdRef="Throw_Writeback">
+                <Throw.Exception>
+                  <InArgument x:TypeArguments="s:Exception">[New Exception("OpenMRS writeback HTTP " &amp; writebackStatus.ToString() &amp; " for " &amp; referralId &amp; ": " &amp; writebackResp)]</InArgument>
+                </Throw.Exception>
+              </Throw>
+            </Sequence>
+          </If.Then>
+        </If>
+        <ui:MoveFile DisplayName="Move to processed" sap2010:WorkflowViewState.IdRef="Move_Processed" Overwrite="True">
+          <ui:MoveFile.Path>
+            <InArgument x:TypeArguments="x:String">[sourcePath]</InArgument>
+          </ui:MoveFile.Path>
+          <ui:MoveFile.Destination>
+            <InArgument x:TypeArguments="x:String">[Path.Combine(in_Config("ProcessedFolder").ToString(), sourceFile)]</InArgument>
+          </ui:MoveFile.Destination>
+        </ui:MoveFile>
+        <ui:LogMessage DisplayName="Log created" sap2010:WorkflowViewState.IdRef="LogMessage_Created" Level="Info" Message="[referralId &amp; &quot; created in OpenMRS: &quot; &amp; writebackResp]" />
+      </Sequence>
+      <Sequence x:Key="HUMAN_REVIEW_REQUIRED" DisplayName="Route to human review" sap2010:WorkflowViewState.IdRef="Seq_Review">
+        <ui:AppendLine DisplayName="Write review row" sap2010:WorkflowViewState.IdRef="Append_Review" Encoding="utf-8">
+          <ui:AppendLine.FileName>
+            <InArgument x:TypeArguments="x:String">[in_Config("ReviewStorePath").ToString()]</InArgument>
+          </ui:AppendLine.FileName>
+          <ui:AppendLine.Text>
+            <InArgument x:TypeArguments="x:String">[DateTime.UtcNow.ToString("o") &amp; "," &amp; referralId &amp; "," &amp; matchResult &amp; "," &amp; finalStatus &amp; ",""" &amp; reasonCodes &amp; """,PENDING"]</InArgument>
+          </ui:AppendLine.Text>
+        </ui:AppendLine>
+        <ui:MoveFile DisplayName="Move to review" sap2010:WorkflowViewState.IdRef="Move_Review" Overwrite="True">
+          <ui:MoveFile.Path>
+            <InArgument x:TypeArguments="x:String">[sourcePath]</InArgument>
+          </ui:MoveFile.Path>
+          <ui:MoveFile.Destination>
+            <InArgument x:TypeArguments="x:String">[Path.Combine(in_Config("ReviewFolder").ToString(), sourceFile)]</InArgument>
+          </ui:MoveFile.Destination>
+        </ui:MoveFile>
+        <ui:LogMessage DisplayName="Log review" sap2010:WorkflowViewState.IdRef="LogMessage_Review" Level="Info" Message="[referralId &amp; &quot; routed to human review: &quot; &amp; reasonCodes]" />
+      </Sequence>
+      <Sequence x:Key="BUSINESS_EXCEPTION" DisplayName="Business exception" sap2010:WorkflowViewState.IdRef="Seq_BE">
+        <ui:MoveFile DisplayName="Move to failed (BE)" sap2010:WorkflowViewState.IdRef="Move_BE" Overwrite="True">
+          <ui:MoveFile.Path>
+            <InArgument x:TypeArguments="x:String">[sourcePath]</InArgument>
+          </ui:MoveFile.Path>
+          <ui:MoveFile.Destination>
+            <InArgument x:TypeArguments="x:String">[Path.Combine(in_Config("FailedFolder").ToString(), sourceFile)]</InArgument>
+          </ui:MoveFile.Destination>
+        </ui:MoveFile>
+        <Throw DisplayName="Throw BusinessRuleException" sap2010:WorkflowViewState.IdRef="Throw_BE">
+          <Throw.Exception>
+            <InArgument x:TypeArguments="s:Exception">[New UiPath.Core.BusinessRuleException("Business exception " &amp; referralId &amp; ": " &amp; reasonCodes)]</InArgument>
+          </Throw.Exception>
+        </Throw>
+      </Sequence>
+      <Sequence x:Key="SYSTEM_EXCEPTION" DisplayName="System exception" sap2010:WorkflowViewState.IdRef="Seq_SE">
+        <ui:MoveFile DisplayName="Move to failed (SE)" sap2010:WorkflowViewState.IdRef="Move_SE" Overwrite="True">
+          <ui:MoveFile.Path>
+            <InArgument x:TypeArguments="x:String">[sourcePath]</InArgument>
+          </ui:MoveFile.Path>
+          <ui:MoveFile.Destination>
+            <InArgument x:TypeArguments="x:String">[Path.Combine(in_Config("FailedFolder").ToString(), sourceFile)]</InArgument>
+          </ui:MoveFile.Destination>
+        </ui:MoveFile>
+        <Throw DisplayName="Throw System Exception" sap2010:WorkflowViewState.IdRef="Throw_SE">
+          <Throw.Exception>
+            <InArgument x:TypeArguments="s:Exception">[New Exception("System exception " &amp; referralId &amp; ": " &amp; reasonCodes)]</InArgument>
+          </Throw.Exception>
+        </Throw>
+      </Sequence>
+    </Switch>
+  </Sequence>
+</Activity>

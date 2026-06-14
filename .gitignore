@@ -53,3 +53,6 @@ Thumbs.db
 
 # NOTE: data/input-referrals and data/synthetic-patients ARE committed
 #       because they are synthetic test fixtures, not runtime output.
+data/audit/*
+!data/audit/.gitkeep
+**/Exceptions_Screenshots/*.png

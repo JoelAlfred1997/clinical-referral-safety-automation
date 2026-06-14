@@ -1,0 +1,6 @@
+{
+  "Name": "NHS.ReferralSafety.Performer",
+  "ProjectType": "Process",
+  "Description": "REFramework performer for the NHS Clinical Referral Safety Automation (synthetic data only). Consumes the NHS_Referrals queue; orchestrates extraction + decision services and OpenMRS write/verify.",
+  "MainFile": "Main.xaml"
+}

@@ -1,0 +1,6 @@
+{
+  "Name": "NHS.ReferralSafety.Dispatcher",
+  "ProjectType": "Process",
+  "Description": "Dispatcher for the NHS Clinical Referral Safety Automation (synthetic data only). Enumerates referral files and adds one queue item per referral to NHS_Referrals.",
+  "MainFile": "Main.xaml"
+}
