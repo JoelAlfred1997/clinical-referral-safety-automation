@@ -1,0 +1,163 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}"
+xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib"
+xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json"
+xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib"
+xmlns:ui="http://schemas.uipath.com/workflow/activities"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <TextExpression.NamespacesForImplementation>
+        <sco:Collection x:TypeArguments="x:String">
+            <x:String>System.Activities</x:String>
+            <x:String>System.Activities.Statements</x:String>
+            <x:String>System.Activities.Expressions</x:String>
+            <x:String>System.Activities.Validation</x:String>
+            <x:String>System.Activities.XamlIntegration</x:String>
+            <x:String>Microsoft.VisualBasic</x:String>
+            <x:String>Microsoft.VisualBasic.Activities</x:String>
+            <x:String>System</x:String>
+            <x:String>System.Collections</x:String>
+            <x:String>System.Collections.Generic</x:String>
+            <x:String>System.Collections.ObjectModel</x:String>
+            <x:String>System.Data</x:String>
+            <x:String>System.Diagnostics</x:String>
+            <x:String>System.Drawing</x:String>
+            <x:String>System.IO</x:String>
+            <x:String>System.Linq</x:String>
+            <x:String>System.Net.Mail</x:String>
+            <x:String>System.Text.RegularExpressions</x:String>
+            <x:String>System.Xml</x:String>
+            <x:String>System.Xml.Linq</x:String>
+            <x:String>UiPath.Core</x:String>
+            <x:String>UiPath.Core.Activities</x:String>
+            <x:String>Newtonsoft.Json</x:String>
+            <x:String>Newtonsoft.Json.Linq</x:String>
+            <x:String>System.Windows.Markup</x:String>
+        </sco:Collection>
+    </TextExpression.NamespacesForImplementation>
+    <TextExpression.ReferencesForImplementation>
+        <sco:Collection x:TypeArguments="AssemblyReference">
+            <AssemblyReference>System.Activities</AssemblyReference>
+            <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+            <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+            <AssemblyReference>mscorlib</AssemblyReference>
+            <AssemblyReference>System.Data</AssemblyReference>
+            <AssemblyReference>System</AssemblyReference>
+            <AssemblyReference>System.Linq</AssemblyReference>
+            <AssemblyReference>System.Data.Common</AssemblyReference>
+            <AssemblyReference>System.Drawing</AssemblyReference>
+            <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+            <AssemblyReference>System.Drawing.Common</AssemblyReference>
+            <AssemblyReference>System.Core</AssemblyReference>
+            <AssemblyReference>System.Xml</AssemblyReference>
+            <AssemblyReference>System.Xml.Linq</AssemblyReference>
+            <AssemblyReference>PresentationFramework</AssemblyReference>
+            <AssemblyReference>WindowsBase</AssemblyReference>
+            <AssemblyReference>PresentationCore</AssemblyReference>
+            <AssemblyReference>System.Xaml</AssemblyReference>
+            <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+            <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+            <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+            <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+            <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+            <AssemblyReference>System.Net.Mail</AssemblyReference>
+        </sco:Collection>
+    </TextExpression.ReferencesForImplementation>
+    <Sequence DisplayName="Resolve human-review decisions" sap2010:WorkflowViewState.IdRef="Sequence_1">
+        <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="resolveUrl" Default="http://localhost:8092/resolve" />
+            <Variable x:TypeArguments="x:String" Name="resp" />
+            <Variable x:TypeArguments="x:Int32" Name="status" />
+            <Variable x:TypeArguments="njl:JObject" Name="summary" />
+            <Variable x:TypeArguments="x:Int32" Name="actioned" />
+            <Variable x:TypeArguments="x:Int32" Name="created" />
+            <Variable x:TypeArguments="x:Int32" Name="rejected" />
+            <Variable x:TypeArguments="x:Int32" Name="failed" />
+        </Sequence.Variables>
+        <ui:LogMessage DisplayName="Log start" sap2010:WorkflowViewState.IdRef="LogMessage_Start" Level="Info" Message="[&quot;ReviewResolver started. The bot re-reads clinician decisions via &quot; &amp; resolveUrl]" />
+        <ui:HttpClient DisplayName="POST /resolve" sap2010:WorkflowViewState.IdRef="Http_Resolve" AcceptFormat="JSON" AuthenticationType="None" BodyFormat="application/json" Method="POST" TimeoutMS="180000">
+            <ui:HttpClient.EndPoint>
+                <InArgument x:TypeArguments="x:String">[resolveUrl]</InArgument>
+            </ui:HttpClient.EndPoint>
+            <ui:HttpClient.Body>
+                <InArgument x:TypeArguments="x:String">["{}"]</InArgument>
+            </ui:HttpClient.Body>
+            <ui:HttpClient.Result>
+                <OutArgument x:TypeArguments="x:String">[resp]</OutArgument>
+            </ui:HttpClient.Result>
+            <ui:HttpClient.StatusCode>
+                <OutArgument x:TypeArguments="x:Int32">[status]</OutArgument>
+            </ui:HttpClient.StatusCode>
+        </ui:HttpClient>
+        <If DisplayName="Guard: service responded 200" sap2010:WorkflowViewState.IdRef="If_Status">
+            <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">[status &lt;&gt; 200]</InArgument>
+            </If.Condition>
+            <If.Then>
+                <Throw DisplayName="Throw service error (system)" sap2010:WorkflowViewState.IdRef="Throw_Status">
+                    <Throw.Exception>
+                        <InArgument x:TypeArguments="s:Exception">[New Exception("Review service returned HTTP " &amp; status.ToString() &amp; ": " &amp; resp)]</InArgument>
+                    </Throw.Exception>
+                </Throw>
+            </If.Then>
+        </If>
+        <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Parse resolve summary" sap2010:WorkflowViewState.IdRef="Deserialize_Summary">
+            <ui:DeserializeJson.JsonString>
+                <InArgument x:TypeArguments="x:String">[resp]</InArgument>
+            </ui:DeserializeJson.JsonString>
+            <ui:DeserializeJson.JsonObject>
+                <OutArgument x:TypeArguments="njl:JObject">[summary]</OutArgument>
+            </ui:DeserializeJson.JsonObject>
+        </ui:DeserializeJson>
+        <Assign DisplayName="actioned" sap2010:WorkflowViewState.IdRef="Assign_Actioned">
+            <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[actioned]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[CInt(summary("actioned").ToString())]</InArgument>
+            </Assign.Value>
+        </Assign>
+        <Assign DisplayName="created" sap2010:WorkflowViewState.IdRef="Assign_Created">
+            <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[created]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[CInt(summary("created_in_openmrs").ToString())]</InArgument>
+            </Assign.Value>
+        </Assign>
+        <Assign DisplayName="rejected" sap2010:WorkflowViewState.IdRef="Assign_Rejected">
+            <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[rejected]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[CInt(summary("rejected_no_record").ToString())]</InArgument>
+            </Assign.Value>
+        </Assign>
+        <Assign DisplayName="failed" sap2010:WorkflowViewState.IdRef="Assign_Failed">
+            <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[failed]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[CInt(summary("failed").ToString())]</InArgument>
+            </Assign.Value>
+        </Assign>
+        <ui:LogMessage DisplayName="Log outcome" sap2010:WorkflowViewState.IdRef="LogMessage_Outcome" Level="Info" Message="[&quot;Resolved &quot; &amp; actioned.ToString() &amp; &quot; review(s): &quot; &amp; created.ToString() &amp; &quot; created in OpenMRS, &quot; &amp; rejected.ToString() &amp; &quot; rejected (no record), &quot; &amp; failed.ToString() &amp; &quot; failed.&quot;]" />
+        <If DisplayName="Guard: no resolution failures" sap2010:WorkflowViewState.IdRef="If_Failed">
+            <If.Condition>
+                <InArgument x:TypeArguments="x:Boolean">[failed &gt; 0]</InArgument>
+            </If.Condition>
+            <If.Then>
+                <Throw DisplayName="Throw resolution failure (system)" sap2010:WorkflowViewState.IdRef="Throw_Failed">
+                    <Throw.Exception>
+                        <InArgument x:TypeArguments="s:Exception">[New Exception("Review resolution had " &amp; failed.ToString() &amp; " system failure(s); see data/audit/audit-log.csv.")]</InArgument>
+                    </Throw.Exception>
+                </Throw>
+            </If.Then>
+        </If>
+        <ui:LogMessage DisplayName="Log done" sap2010:WorkflowViewState.IdRef="LogMessage_Done" Level="Info" Message="[&quot;ReviewResolver finished. Pending reviews remaining: &quot; &amp; summary(&quot;pending_remaining&quot;).ToString()]" />
+    </Sequence>
+</Activity>

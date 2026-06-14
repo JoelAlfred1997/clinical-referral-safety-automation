@@ -1,0 +1,6 @@
+{
+  "Name": "NHS.ReferralSafety.ReviewResolver",
+  "ProjectType": "Process",
+  "Description": "Review resolver for the NHS Clinical Referral Safety Automation (synthetic data only). Re-reads human-review decisions and asks the review service to apply each outcome (create in OpenMRS / no record).",
+  "MainFile": "Main.xaml"
+}
