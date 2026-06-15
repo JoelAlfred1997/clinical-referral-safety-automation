@@ -79,12 +79,12 @@ documented in [`docs/testing/phase8-acceptance.md`](docs/testing/phase8-acceptan
 /reports              dashboard (HTML) + generated Excel report
 ```
 
-## Status
+## Build phases
 
-Building phase by phase. See [`docs/business/project-scope.md`](docs/business/project-scope.md)
-for the roadmap and Definition of Done.
+Built in 13 gated phases — each passed its own acceptance test before the next began. Full roadmap
+and Definition of Done in [`docs/business/project-scope.md`](docs/business/project-scope.md).
 
-| Phase | Status |
+| Phase | Delivered |
 |---|---|
 | 0 — Scope & architecture | ✅ complete |
 | 1 — OpenMRS local setup | ✅ complete (50 demo patients, REST+FHIR verified) |
@@ -100,8 +100,6 @@ for the roadmap and Definition of Done.
 | 11 — Clinical safety + governance docs | ✅ complete (DCB0129/0160/DTAC/DPIA-inspired pack; 12 named hazards mapped to real controls; machine-checked 9/9) |
 | 12 — Testing + evidence pack | ✅ complete (generated evidence pack + test plan; all 15 scenarios across 4 outcome classes, 15/15 vs oracles, 11/11 prior gates; machine-checked 8/8) |
 | 13 — GitHub packaging | ✅ complete (interview-ready README; lean public repo — generated/boilerplate and personal material excluded) |
-
-**All 13 phases complete.** Every phase passed its own acceptance gate before the next began.
 
 ## Key documents
 
