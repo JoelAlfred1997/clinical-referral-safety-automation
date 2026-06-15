@@ -53,6 +53,8 @@ def check(name: str, ok: bool, detail: str = "") -> None:
 def main() -> int:
     tmp = tempfile.mkdtemp(prefix="phase9-accept-")
     db = os.path.join(tmp, "review-store.sqlite")
+    # A throwaway audit log: this test replay must never touch the production trail.
+    audit_log = os.path.join(tmp, "audit-log.csv")
     conn = store.connect(db)
 
     ing = store.ingest_csv(conn)
@@ -76,8 +78,8 @@ def main() -> int:
         bad = True
     check("guard: a decision with no rationale is refused", bad)
 
-    # The bot re-reads and applies the decisions.
-    summary = resolve_reviews.resolve(conn)
+    # The bot re-reads and applies the decisions (audit to the throwaway log).
+    summary = resolve_reviews.resolve(conn, audit_log=audit_log)
     check("resolve: 6 created in OpenMRS, 4 rejected, 0 failed",
           summary["created_in_openmrs"] == 6 and summary["rejected_no_record"] == 4
           and summary["failed"] == 0, str({k: summary[k] for k in
@@ -97,7 +99,7 @@ def main() -> int:
     check("no work left: 0 PENDING remain", store.counts(conn).get(store.PENDING, 0) == 0)
 
     # Idempotency: re-resolving changes nothing and creates no duplicate records.
-    again = resolve_reviews.resolve(conn)
+    again = resolve_reviews.resolve(conn, audit_log=audit_log)
     check("idempotent: a second resolve actions 0 reviews (all RESOLVED)",
           again["actioned"] == 0, f"actioned={again['actioned']}")
 

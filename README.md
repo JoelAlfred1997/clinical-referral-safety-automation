@@ -52,7 +52,8 @@ for the roadmap and Definition of Done.
 | 7 — REFramework design spec | ✅ complete (buildable Dispatcher + Performer design, Config.xlsx, BE/SE separated; 12/12 design review) |
 | 8 — UiPath build | ✅ complete (Dispatcher + REFramework Performer; live Orchestrator queue run; 15/15 — 3→OpenMRS, 10→review, dup detected, 1 BE, 1 SE) |
 | 9 — Human-in-the-loop review | ✅ complete (real SQLite store; clinician APPROVE/REJECT/AMEND; UiPath ReviewResolver applied 6→OpenMRS, 4→no record; audited, idempotent; 8/8) |
-| 10–13 | ⬜ pending |
+| 10 — Reporting + dashboard | ✅ complete (Excel workbook + self-contained HTML dashboard from the real run; 9 created/4 rejected/2 exceptions, 0 unsafe auto-creates; reconciles with audit + oracles; 8/8) |
+| 11–13 | ⬜ pending |
 
 ## Key documents
 

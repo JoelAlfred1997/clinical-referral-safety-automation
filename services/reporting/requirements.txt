@@ -1,0 +1,6 @@
+# Reporting (Phase 10).
+# The dashboard generator (build_dashboard.py) and the report model use the Python
+# standard library only. The Excel generator needs openpyxl (same dependency the
+# Phase 7 Config.xlsx builder used).
+
+openpyxl>=3.1     # Excel workbook + charts (build_report.py)

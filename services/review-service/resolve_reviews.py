@@ -57,10 +57,11 @@ def _load_json(path: str) -> dict:
         return json.load(fh)
 
 
-def _audit(ref_id: str, action: str, status: str, match_result: str, detail: str) -> None:
-    os.makedirs(os.path.dirname(AUDIT_LOG), exist_ok=True)
+def _audit(audit_log: str, ref_id: str, action: str, status: str,
+           match_result: str, detail: str) -> None:
+    os.makedirs(os.path.dirname(audit_log), exist_ok=True)
     row = [store.utcnow(), ref_id, action, status, match_result or "", detail]
-    with open(AUDIT_LOG, "a", newline="", encoding="utf-8") as fh:
+    with open(audit_log, "a", newline="", encoding="utf-8") as fh:
         csv.writer(fh).writerow(row)
 
 
@@ -115,7 +116,7 @@ def _post_writeback(extraction: dict, decision: dict) -> tuple[int, dict]:
         return exc.code, payload
 
 
-def resolve_one(conn, review: dict, *, dry_run: bool = False) -> dict:
+def resolve_one(conn, review: dict, *, dry_run: bool = False, audit_log: str = AUDIT_LOG) -> dict:
     ref_id = review["referral_id"]
     decision = (review.get("reviewer_decision") or "").upper()
     reviewer = review.get("reviewer") or "?"
@@ -125,7 +126,7 @@ def resolve_one(conn, review: dict, *, dry_run: bool = False) -> dict:
         if dry_run:
             return {"referral_id": ref_id, "action": "REJECT", "would": store.FINAL_REJECTED}
         store.mark_resolved(conn, ref_id, final_status=store.FINAL_REJECTED)
-        _audit(ref_id, "REVIEW_RESOLVED_REJECT", store.FINAL_REJECTED, match_result,
+        _audit(audit_log, ref_id, "REVIEW_RESOLVED_REJECT", store.FINAL_REJECTED, match_result,
                f"reviewer={reviewer};rationale={(review.get('rationale') or '')[:120]}")
         return {"referral_id": ref_id, "action": "REJECT", "final_status": store.FINAL_REJECTED}
 
@@ -140,7 +141,7 @@ def resolve_one(conn, review: dict, *, dry_run: bool = False) -> dict:
     if code == 200 and payload.get("verified"):
         enc = payload.get("encounter_uuid")
         store.mark_resolved(conn, ref_id, final_status=store.FINAL_CREATED, encounter_uuid=enc)
-        _audit(ref_id, f"REVIEW_RESOLVED_{decision}", store.FINAL_CREATED, match_result,
+        _audit(audit_log, ref_id, f"REVIEW_RESOLVED_{decision}", store.FINAL_CREATED, match_result,
                f"reviewer={reviewer};nhs={wb_decision['matched_patient']['nhs_number']};"
                f"encounter={enc};writeback={payload.get('action')}")
         return {"referral_id": ref_id, "action": decision,
@@ -150,24 +151,28 @@ def resolve_one(conn, review: dict, *, dry_run: bool = False) -> dict:
     # Anything else is a system/operational fault: stays actionable for re-run.
     detail = f"reviewer={reviewer};http={code};error={str(payload.get('error'))[:140]}"
     store.mark_failed(conn, ref_id, final_status=store.FINAL_FAILED)
-    _audit(ref_id, "REVIEW_RESOLUTION_FAILED", store.FINAL_FAILED, match_result, detail)
+    _audit(audit_log, ref_id, "REVIEW_RESOLUTION_FAILED", store.FINAL_FAILED, match_result, detail)
     return {"referral_id": ref_id, "action": decision, "final_status": store.FINAL_FAILED,
             "http": code, "error": payload.get("error")}
 
 
-def resolve(conn, *, dry_run: bool = False) -> dict:
-    """Resolve every decided/failed review. Idempotent: RESOLVED rows are skipped."""
+def resolve(conn, *, dry_run: bool = False, audit_log: str = AUDIT_LOG) -> dict:
+    """Resolve every decided/failed review. Idempotent: RESOLVED rows are skipped.
+
+    `audit_log` defaults to the real append-only log; the acceptance gate points it
+    at a throwaway file so a test replay never touches the production audit trail.
+    """
     actionable = [r for r in store.list_reviews(conn)
                   if r["review_status"] in (store.DECIDED, store.FAILED)]
     results = []
     for review in actionable:
         try:
-            results.append(resolve_one(conn, review, dry_run=dry_run))
+            results.append(resolve_one(conn, review, dry_run=dry_run, audit_log=audit_log))
         except store.ReviewError as exc:
             ref_id = review["referral_id"]
             if not dry_run:
                 store.mark_failed(conn, ref_id, final_status=store.FINAL_FAILED)
-                _audit(ref_id, "REVIEW_RESOLUTION_FAILED", store.FINAL_FAILED,
+                _audit(audit_log, ref_id, "REVIEW_RESOLUTION_FAILED", store.FINAL_FAILED,
                        review.get("match_result") or "", f"error={exc}")
             results.append({"referral_id": ref_id, "action": "ERROR", "error": str(exc)})
 
@@ -192,11 +197,12 @@ def resolve(conn, *, dry_run: bool = False) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser(description="Resolve human-reviewed referrals (Phase 9).")
     ap.add_argument("--db", default=store.DEFAULT_DB_PATH)
+    ap.add_argument("--audit-log", default=AUDIT_LOG)
     ap.add_argument("--dry-run", action="store_true", help="show outcomes, change nothing")
     args = ap.parse_args()
 
     conn = store.connect(args.db)
-    summary = resolve(conn, dry_run=args.dry_run)
+    summary = resolve(conn, dry_run=args.dry_run, audit_log=args.audit_log)
     print(json.dumps(summary, indent=2, ensure_ascii=False))
     return 0
 
