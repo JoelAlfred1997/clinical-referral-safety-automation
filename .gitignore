@@ -61,3 +61,16 @@ data/audit/*
 docs/Build-Progress-Log.docx
 docs/Project-Explained-Simply.docx
 docs/build-log/
+# CV/LinkedIn/interview material — personal, kept locally
+docs/cv-linkedin/
+
+# ── UiPath generated / template artifacts (not portfolio source) ───
+**/.project/
+**/*.xaml.json
+# Third-party REFramework manual shipped with the template
+**/Documentation/*.pdf
+# Stock REFramework test-case stubs (boilerplate, not authored tests)
+uipath/NHS.ReferralSafety.Performer/Tests/
+
+# ── Vestigial empty service dir (audit trail is the CSV in data/audit) ─
+services/audit-service/
