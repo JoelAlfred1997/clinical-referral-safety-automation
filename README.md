@@ -53,13 +53,15 @@ for the roadmap and Definition of Done.
 | 8 — UiPath build | ✅ complete (Dispatcher + REFramework Performer; live Orchestrator queue run; 15/15 — 3→OpenMRS, 10→review, dup detected, 1 BE, 1 SE) |
 | 9 — Human-in-the-loop review | ✅ complete (real SQLite store; clinician APPROVE/REJECT/AMEND; UiPath ReviewResolver applied 6→OpenMRS, 4→no record; audited, idempotent; 8/8) |
 | 10 — Reporting + dashboard | ✅ complete (Excel workbook + self-contained HTML dashboard from the real run; 9 created/4 rejected/2 exceptions, 0 unsafe auto-creates; reconciles with audit + oracles; 8/8) |
-| 11–13 | ⬜ pending |
+| 11 — Clinical safety + governance docs | ✅ complete (DCB0129/0160/DTAC/DPIA-inspired pack; 12 named hazards mapped to real controls; machine-checked 9/9) |
+| 12–13 | ⬜ pending |
 
 ## Key documents
 
 - Architecture — [`docs/technical/architecture.md`](docs/technical/architecture.md)
 - Project scope & DoD — [`docs/business/project-scope.md`](docs/business/project-scope.md)
-- Clinical safety boundary — [`docs/clinical-safety/safety-boundary-statement.md`](docs/clinical-safety/safety-boundary-statement.md)
+- Clinical safety pack (DCB0129-inspired) — [`docs/clinical-safety/`](docs/clinical-safety/) (safety boundary, risk-management plan, hazard log, safety case)
+- Information governance (DPIA + DTAC) — [`docs/information-governance/`](docs/information-governance/)
 
 ## Safety & data
 
