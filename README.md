@@ -24,6 +24,52 @@ patient matching · duplicate-referral detection · rule-based clinical-safety d
 human-in-the-loop review · append-only audit logging · exception handling & retries ·
 DCB0129 / DCB0160 / DTAC / DPIA-inspired clinical-safety governance.
 
+## Results at a glance
+
+From the real end-to-end run (generated, not hand-typed — see
+[`docs/testing/evidence-pack.md`](docs/testing/evidence-pack.md)):
+
+| Metric | Value |
+|---|---|
+| Synthetic referrals processed end-to-end | **15** |
+| Decisions matching the independently-written oracle | **15/15** |
+| Created in OpenMRS | **9** (3 automated + 6 human-approved/amended) |
+| Routed to human review | **10 (67%)** |
+| Rejected at review (no record) | **4** |
+| Exceptions (business + system), handled distinctly | **2** |
+| **Auto-created while carrying a safety flag** | **0** — the core safety guarantee |
+| Append-only audit rows (who/what/before/after/when/why) | **25** |
+| Named clinical-safety hazards mapped to real controls | **12** |
+
+> **The principle throughout: AI proposes, deterministic rules and human reviewers decide.**
+
+📊 Portfolio dashboard: [`reports/dashboard.html`](reports/dashboard.html) (self-contained, open in a browser).
+💼 Interview pack (CV bullets · STAR stories · demo script · Q&A): [`docs/cv-linkedin/`](docs/cv-linkedin/).
+
+## Quick start
+
+```bash
+# 1. Start OpenMRS (mock EPR) — ready when REST /ws/rest/v1/session returns authenticated:true
+docker compose -f openmrs-setup/docker-compose.yml up -d
+
+# 2. (offline, no UiPath needed) reproduce the decision pipeline against the oracles
+cd services/extraction-service && python run_extraction.py && python validate_against_oracles.py   # 15/15
+cd ../rules-engine          && python run_decisions.py   && python validate_against_oracles.py      # 15/15
+
+# 3. Regenerate the evidence and confirm every gate
+python services/reporting/build_all.py            # Excel workbook + dashboard.html
+python services/testing/build_evidence_pack.py    # docs/testing/evidence-pack.md
+python services/testing/validate_acceptance.py    # Phase 12 gate → 8/8
+python docs/clinical-safety/validate_pack.py      # safety pack gate → 9/9
+python docs/cv-linkedin/validate_pack.py          # Phase 13 packaging gate → 5/5
+```
+
+The full live UiPath run (Orchestrator queue + REFramework Performer + human-review resolver) is
+documented in [`docs/testing/phase8-acceptance.md`](docs/testing/phase8-acceptance.md) and
+[`docs/testing/phase9-acceptance.md`](docs/testing/phase9-acceptance.md). Requires `uip login`, the
+`.NET` toolchain, and the three Python services running. Python 3.9+; stdlib only except `openpyxl`
+(reporting) and an optional LLM key.
+
 ## Repository layout
 
 ```
@@ -55,7 +101,9 @@ for the roadmap and Definition of Done.
 | 10 — Reporting + dashboard | ✅ complete (Excel workbook + self-contained HTML dashboard from the real run; 9 created/4 rejected/2 exceptions, 0 unsafe auto-creates; reconciles with audit + oracles; 8/8) |
 | 11 — Clinical safety + governance docs | ✅ complete (DCB0129/0160/DTAC/DPIA-inspired pack; 12 named hazards mapped to real controls; machine-checked 9/9) |
 | 12 — Testing + evidence pack | ✅ complete (generated evidence pack + test plan; all 15 scenarios across 4 outcome classes, 15/15 vs oracles, 11/11 prior gates; machine-checked 8/8) |
-| 13 | ⬜ pending |
+| 13 — GitHub/CV/LinkedIn packaging | ✅ complete (interview-ready README, demo script, STAR stories, CV/LinkedIn bullets, interview Q&A; machine-checked 5/5) |
+
+**All 13 phases complete.** Every phase passed its own acceptance gate before the next began.
 
 ## Key documents
 
@@ -64,6 +112,7 @@ for the roadmap and Definition of Done.
 - Clinical safety pack (DCB0129-inspired) — [`docs/clinical-safety/`](docs/clinical-safety/) (safety boundary, risk-management plan, hazard log, safety case)
 - Information governance (DPIA + DTAC) — [`docs/information-governance/`](docs/information-governance/)
 - Test plan & consolidated evidence pack — [`docs/testing/test-plan.md`](docs/testing/test-plan.md) · [`docs/testing/evidence-pack.md`](docs/testing/evidence-pack.md)
+- Interview / CV / LinkedIn pack — [`docs/cv-linkedin/`](docs/cv-linkedin/) (demo script, STAR stories, interview Q&A, copy-paste CV & LinkedIn bullets)
 
 ## Safety & data
 
