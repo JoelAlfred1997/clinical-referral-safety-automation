@@ -156,11 +156,11 @@ tagged every record `SYNTHETIC`, kept secrets out of the repo behind `.env.examp
 phase on its own acceptance test before starting the next. Idempotency is keyed on the referral
 reference so re-running never double-writes to OpenMRS.
 
-**Result.** Thirteen phases, each with a committed acceptance record, a maintained Word build log, and a
-clean git history of one commit per phase. The discipline is the point: it's what makes the project
-defensible in an NHS interview rather than just a demo.
+**Result.** Thirteen phases, each with a committed acceptance record and a clean git history of one
+commit per phase. The discipline is the point: it's what makes the project defensible in an NHS
+interview rather than just a demo.
 
-*Evidence:* `docs/business/project-scope.md` (DoD), `docs/Build-Progress-Log.docx`, git history.
+*Evidence:* `docs/business/project-scope.md` (DoD), `docs/testing/phase1-acceptance.md` … `phase13-acceptance.md`, git history.
 
 ---
 

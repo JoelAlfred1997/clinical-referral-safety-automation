@@ -56,3 +56,8 @@ Thumbs.db
 data/audit/*
 !data/audit/.gitkeep
 **/Exceptions_Screenshots/*.png
+
+# ── Personal / internal docs (kept locally, not published) ─────────
+docs/Build-Progress-Log.docx
+docs/Project-Explained-Simply.docx
+docs/build-log/
