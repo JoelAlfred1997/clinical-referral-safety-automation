@@ -65,8 +65,8 @@ docs/Project-Explained-Simply.assets/
 docs/build-log/
 # CV/LinkedIn/interview material — personal, kept locally
 docs/cv-linkedin/
-# Native-UiPath rebuild guide — personal working doc
-docs/uipath-native-build-guide.md
+# Native-UiPath rebuild guide — personal working doc (md + docx)
+docs/uipath-native-build-guide.*
 
 # ── UiPath generated / template artifacts (not portfolio source) ───
 **/.project/
