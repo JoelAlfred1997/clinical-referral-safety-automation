@@ -60,6 +60,8 @@ data/audit/*
 # ── Personal / internal docs (kept locally, not published) ─────────
 docs/Build-Progress-Log.docx
 docs/Project-Explained-Simply.docx
+docs/Project-Explained-Simply.md
+docs/Project-Explained-Simply.assets/
 docs/build-log/
 # CV/LinkedIn/interview material — personal, kept locally
 docs/cv-linkedin/
